@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\CommunityController;
+use App\Http\Controllers\StaffController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::get('/', [CommunityController::class, 'viewLandingPage']);
+
+Route::get('/admin', [StaffController::class, 'viewLandingPage']);
+
+Route::get('/project-guidance', function () {
+    return view('project-guidance');
 });
