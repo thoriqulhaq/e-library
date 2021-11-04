@@ -18,3 +18,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CommunityController::class, 'viewLandingPage']);
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
+
+Route::get('/project-guidance', function () {
+    return view('project-guidance');
+});
