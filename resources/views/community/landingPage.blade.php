@@ -9,7 +9,7 @@
             <div class="col-xl-6">
                 <div class="text-center text-white">
                     <!-- Page heading-->
-                    <h1 class="mb-5">Discover, Enlighten, Inspire</h1>
+                    <h1 class="mb-5" style="color: #212529">Discover, Enlighten, Inspire</h1>
                     <!-- Signup form-->
                     <!-- * * * * * * * * * * * * * * *-->
                     <!-- * * SB Forms Contact Form * *-->
@@ -26,7 +26,7 @@
                                 <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
                                 <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
                             </div>
-                            <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Search</button></div>
+                            <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit" style="background-color: #008000; border:#008000">Search</button></div>
                         </div>
                         <!-- Submit success message-->
                         <!---->
