@@ -10,4 +10,8 @@ class StaffController extends Controller
     {
         return view('staff.main');
     }
+
+    public function uploadBook() {
+        return view('staff.uploadbook');
+    }
 }
