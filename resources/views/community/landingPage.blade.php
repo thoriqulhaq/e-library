@@ -68,7 +68,6 @@
                                 <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
                                     <h5 class="card-title">Clean Code</h5>
                                 </a>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
                         <div class="card m-2 bg-light" style="width: 15rem;">
@@ -77,7 +76,6 @@
                                 <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
                                     <h5 class="card-title">Clean Code</h5>
                                 </a>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
                     </div>
@@ -95,7 +93,6 @@
                                 <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
                                     <h5 class="card-title">Clean Code</h5>
                                 </a>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
                         <div class="card m-2 bg-light" style="width: 15rem;">
@@ -104,7 +101,6 @@
                                 <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
                                     <h5 class="card-title">Clean Code</h5>
                                 </a>
-                                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
                             </div>
                         </div>
                     </div>

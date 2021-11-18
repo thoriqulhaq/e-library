@@ -16,7 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [CommunityController::class, 'viewLandingPage']);
-Route::get('/book/1', [CommunityController::class, 'viewDetail'])->name('detail');;
+Route::get('/book/1', [CommunityController::class, 'viewDetail'])->name('detail');
+Route::get('/login', [CommunityController::class, 'viewloginPage']);
+
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
 
