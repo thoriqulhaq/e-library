@@ -15,6 +15,12 @@ class CreateAcademicResourcesTable extends Migration
     {
         Schema::create('academic_resources', function (Blueprint $table) {
             $table->id();
+            $table->string("title");
+            $table->string("description")->nullable();
+            $table->string("genre")->nullable();
+            $table->string("publication_place");
+            $table->string("publication_date");
+            $table->tinyInteger("type");
             $table->timestamps();
         });
     }

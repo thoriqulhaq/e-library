@@ -8,4 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 class PublicUser extends Model
 {
     use HasFactory;
+
+    protected $atrributes = [
+        "id_number"
+    ];
 }

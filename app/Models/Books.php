@@ -10,13 +10,14 @@ class Books extends Model
     use HasFactory;
 
     protected $attributes = [
-        "title",
-        "description",
-        "genre",
-        "publication_place",
-        "publication_date",
-        "type"
+        "publisher",
+        "edition",
+        "isbn"
     ];
+
+    public function info() {
+        return [$this->publisher, $this->edition, $this->isbn];
+    }
 }
 
 ?>

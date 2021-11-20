@@ -14,8 +14,12 @@ class CreateJournalsTable extends Migration
     public function up()
     {
         Schema::create('journals', function (Blueprint $table) {
-            $table->id();
+            $table->unsignedBigInteger("academic_resources_id")->primary();
+            $table->tinyInteger("volume");
+            $table->tinyInteger("issue")->nullable();
             $table->timestamps();
+
+            $table->foreign("academic_resources_id")->references("id")->on("academic_resources");
         });
     }
 
