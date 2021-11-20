@@ -20,7 +20,7 @@ class CreateBooksTable extends Migration
             $table->string("genre")->nullable();
             $table->string("publication_place");
             $table->string("publication_date");
-            $table->tinyIncrements("type");
+            $table->tinyInteger("type");
         });
     }
 
