@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\StaffController;
+use App\Http\Controllers\DownloadFileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -24,4 +25,13 @@ Route::get('/admin', [StaffController::class, 'viewLandingPage']);
 
 Route::get('/project-guidance', function () {
     return view('project-guidance');
+});
+
+Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->name('download');
+
+Route::get('testDB', function () {
+
+    $books = DB::table('book')->get();
+
+    return view('community.details', ['books' => $books]);
 });
