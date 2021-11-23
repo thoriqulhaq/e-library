@@ -21,6 +21,9 @@ Route::get('/login', [CommunityController::class, 'viewloginPage']);
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
+Route::get('/uploadbook', [StaffController::class, 'viewUploadBook']);
+Route::post('/uploadbook', [StaffController::class, 'submitUploadBook']);
+
 
 Route::get('/project-guidance', function () {
     return view('project-guidance');
