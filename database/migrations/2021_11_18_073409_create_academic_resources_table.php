@@ -21,6 +21,7 @@ class CreateAcademicResourcesTable extends Migration
             $table->string("publication_place");
             $table->string("publication_date");
             $table->tinyInteger("type");
+            $table->string("file_path");
             $table->timestamps();
         });
     }
