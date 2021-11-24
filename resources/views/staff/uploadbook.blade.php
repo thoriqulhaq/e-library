@@ -168,7 +168,7 @@
 
   <body>
     <div class="testbox">
-      <form action="{{ url('/uploadbook') }}" method="post">
+      <form action="{{ url('/uploadbook') }}" method="post" enctype="multipart/form-data">
         @csrf
         <h1>Upload Book Form</h1>
         <div class="item">

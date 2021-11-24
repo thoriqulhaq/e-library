@@ -27,7 +27,15 @@ class StaffController extends Controller
         $acadres->publication_place = $request->input("publish-place");
         $acadres->publication_date = $request->input("publish-date");
         $acadres->type = 1;
+        $acadres->file_path = $request->file("book-file")->store("books");
 
         $acadres->save();
+
+        $book = new Books();
+        $book->publisher = $request->publisher;
+        $book->edition = 5;
+        $book->isbn = $request->isbn;
+
+        $acadres->details()->save($book);
     }
 }

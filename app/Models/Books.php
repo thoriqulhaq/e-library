@@ -9,15 +9,6 @@ class Books extends Model
 {
     use HasFactory;
 
-    protected $attributes = [
-        "publisher",
-        "edition",
-        "isbn"
-    ];
-
-    public function info() {
-        return [$this->publisher, $this->edition, $this->isbn];
-    }
 }
 
 ?>
