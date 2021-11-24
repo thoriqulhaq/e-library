@@ -14,8 +14,11 @@ class CreateAuthorsTable extends Migration
     public function up()
     {
         Schema::create('authors', function (Blueprint $table) {
-            $table->id();
+            $table->string("name")->primary();
+            $table->unsignedBigInteger("public_users_id")->nullable();
             $table->timestamps();
+
+            $table->foreign("public_users_id")->references("users_id")->on("public_users");
         });
     }
 
