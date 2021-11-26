@@ -17,6 +17,10 @@ class AcademicResources extends Model
             return $this->hasOne(Books::class);
         }
     }
+
+    public function authors() {
+        return $this->belongsToMany(Author::class);
+    }
 }
 
 ?>
