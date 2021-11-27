@@ -20,7 +20,7 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
-        'password',
+        'password'
     ];
 
     /**
@@ -31,6 +31,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'is_admin'
     ];
 
     /**
@@ -41,4 +42,13 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function details() {
+        if ($this->is_admin) {
+            return $this->hasOne(Staff::class);
+        }
+        else {
+            return $this->hasOne(PublicUser::class);
+        }
+    }
 }
