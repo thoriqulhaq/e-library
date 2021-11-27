@@ -15,4 +15,9 @@ class CommunityController extends Controller
     {
         return view('community.details');
     }
+
+    public function viewLoginPage()
+    {
+        return view('community.login');
+    }
 }
