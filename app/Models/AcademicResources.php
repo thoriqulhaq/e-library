@@ -19,7 +19,7 @@ class AcademicResources extends Model
     }
 
     public function authors() {
-        return $this->belongsToMany(Author::class);
+        return $this->belongsToMany(Author::class, null, null, "author_name");
     }
 }
 
