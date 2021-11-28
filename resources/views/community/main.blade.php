@@ -21,7 +21,7 @@
     <!-- Navigation-->
     <nav class="navbar navbar-light bg-light static-top">
         <div class="container">
-            <a class="navbar-brand" href="#!">
+            <a class="navbar-brand" href="/">
                 <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="60" width="180" style="object-fit: cover;">
             </a>
             <a class="btn btn-primary" href="#signup" style="background-color: #008000;">Sign Up</a>

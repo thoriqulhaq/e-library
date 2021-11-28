@@ -358,6 +358,7 @@ tfoot,
 tr,
 td,
 th {
+    margin: auto;
     border-color: inherit;
     border-style: solid;
     border-width: 0;
