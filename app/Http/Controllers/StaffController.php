@@ -15,11 +15,13 @@ class StaffController extends Controller
         return view('staff.main');
     }
 
-    public function viewUploadBook() {
+    public function viewUploadBook()
+    {
         return view('staff.uploadbook');
     }
 
-    public function saveBookInfo(Request $request, AcademicResources $acadres, Books $book) {
+    public function saveBookInfo(Request $request, AcademicResources $acadres, Books $book)
+    {
         $acadres->title = $request->title;
         $acadres->description = $request->description;
         $acadres->genre = $request->genre;
@@ -36,40 +38,48 @@ class StaffController extends Controller
         $acadres->details()->save($book);
     }
 
-    public function submitUploadBook(Request $request) {
+    public function submitUploadBook(Request $request)
+    {
         $acadres = new AcademicResources();
         $book = new Books();
-        
+
         $this->saveBookInfo($request, $acadres, $book);
 
         $authorsname = $request->author;
         if (!is_array($authorsname)) {
             $authorsname = [$authorsname];
         }
+
         foreach ($authorsname as $name) {
-            echo $name;
-            $author = Author::where("name", $name)->first();
-            if ($author == null) {
-                $author = new Author();
-                $author->name = $name;
-                $author->save();
+            if ($name != null) {
+                echo $name;
+                $author = Author::where("name", $name)->first();
+                if ($author == null) {
+                    $author = new Author();
+                    $author->name = $name;
+                    $author->save();
+                }
+                $acadres->authors()->attach($name);
             }
-            $acadres->authors()->attach($name);
         }
 
-
+        return redirect("/");
     }
 
-    public function editBook(Request $request, $id) {
+    public function editBook(Request $request, $id)
+    {
         $book = AcademicResources::where("id", $id)->first();
 
-        return view("staff.editbook", [ "title" => $book->title,
-                                        "genre" => $book->genre,
-                                        "description" => $book->description,
-                                        "publisher" => $book->details->info()[1], "publish_place" => $book->publication_place, "publish_date" => $book->publication_date, "isbn" => $book->details->info()[0]]);
+        return view("staff.editbook", [
+            "title" => $book->title,
+            "genre" => $book->genre,
+            "description" => $book->description,
+            "publisher" => $book->details->info()[1], "publish_place" => $book->publication_place, "publish_date" => $book->publication_date, "isbn" => $book->details->info()[0]
+        ]);
     }
 
-    public function editBookP(Request $request, $id) {
+    public function editBookP(Request $request, $id)
+    {
         $acadres = AcademicResources::where("id", $id)->first();
 
         $details = $acadres->details();
