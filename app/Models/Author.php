@@ -9,7 +9,10 @@ class Author extends Model
 {
     use HasFactory;
 
-    protected $atrributes = [
-        "name"
-    ];
+    protected $primaryKey = "name";
+    protected $keyType = "string";
+
+    public function books() {
+        return $this->belongsToMany(AcademicResources::class);
+    }
 }

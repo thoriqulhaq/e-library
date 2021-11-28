@@ -23,6 +23,8 @@ Route::get('/login', [CommunityController::class, 'viewloginPage']);
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
 Route::get('/uploadbook', [StaffController::class, 'viewUploadBook']);
+Route::get('/editbook/{id}', [StaffController::class, 'editBook']);
+Route::post('/editbook/{id}', [StaffController::class, 'editBookP']);
 Route::post('/uploadbook', [StaffController::class, 'submitUploadBook']);
 
 
