@@ -19,9 +19,7 @@
                     <tbody>
                       <tr>
                         <td >
-                        <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=200>
-                        <ion-icon size="large" name="bookmark"></ion-icon>
-                        <br>
+                        <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=180><br>
                         {{$data->title}}<br>
                           
                       
@@ -29,11 +27,12 @@
                        
                         
                         <td >
-            
-                          <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=200>
-                        <ion-icon size="large" name="bookmark"></ion-icon>
-                        <br>
-                        {{$data->title}}<br>
+                          <button type="button" class="btn " data-toggle="tooltip" data-original-title="Edit">
+                            <ion-icon size="large" name="create"></ion-icon>
+                          </button>
+                          <button type="button" class="btn"  onclick="showAlert()" data-toggle="tooltip" data-original-title="Delete">
+                            <ion-icon size="large" name="trash"></ion-icon>
+                          </button>
                         </td>
                       </tr>
 
@@ -41,6 +40,12 @@
                     </tbody>
                   </table>
                 </div>
+
+                <script>
+
+                  
+
+                </script>
               </div>
               @endforeach
           @endsection   
