@@ -10,10 +10,4 @@ class Books extends Model
     use HasFactory;
 
     protected $primaryKey = "academic_resources_id";
-
-    public function info() {
-        return [$this->isbn, $this->publisher];
-    }
 }
-
-?>

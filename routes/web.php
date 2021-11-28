@@ -43,3 +43,11 @@ Route::get('testDB', function () {
 
     return view('community.details', ['books' => $books]);
 });
+
+Route::get('/collection', function () {
+
+    $academic_resources = DB::table('academic_resources')->get();
+
+
+    return view('community.bookmarkList', ['academic_resources' => $academic_resources]);
+});

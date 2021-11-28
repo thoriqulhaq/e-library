@@ -2,41 +2,46 @@
 @section('title', 'Bookmark')
 @section('page')
 
-              <br>
-              <div class="text-center mx-3" style="height:100vh;">
+              <div class="container position-relative mt-5" style="padding: 120px 0; ">
+              <div class="text-center" style="height:100vh;">
                 <h4 >Bookmark Collection<br></h4>
+                @foreach($academic_resources as $key => $data)
                 
-                
-                  <table class="table table-borderless">
+                  <table class="table table-borderless text-center" style="">
                     <thead>
                       <tr class="">
                         <th></th>
-                        <th></th>
                         
-                        <th style="width: 33.3%"></th>
+                        
+                        <th style="width:50%"></th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td></td>
-                        <td>
-                         
-                        </td>
+                        <td >
+                        <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=200>
+                        <ion-icon size="large" name="bookmark"></ion-icon>
+                        <br>
+                        {{$data->title}}<br>
+                          
+                      
+                      </td>
+                       
                         
                         <td >
-                          <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Edit">
-                            <ion-icon class="p-0 m-0" name="create-outline"></ion-icon>
-                          </button>
-                          <button type="button" class="btn btn-sm btn-icon btn-flat btn-default" data-toggle="tooltip" data-original-title="Delete">
-                            <ion-icon class="p-0 m-0" name="trash-outline"></ion-icon>
-                          </button>
+            
+                          <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=200>
+                        <ion-icon size="large" name="bookmark"></ion-icon>
+                        <br>
+                        {{$data->title}}<br>
                         </td>
                       </tr>
 
                       
                     </tbody>
                   </table>
-                
+                </div>
               </div>
+              @endforeach
           @endsection   
             

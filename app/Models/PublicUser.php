@@ -12,4 +12,9 @@ class PublicUser extends Model
     protected $atrributes = [
         "id_number"
     ];
+
+    public function bookmarks()
+    {
+        return $this->hasMany(AcademicResources::class);
+    }
 }

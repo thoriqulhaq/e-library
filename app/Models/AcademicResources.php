@@ -9,18 +9,22 @@ class AcademicResources extends Model
 {
     use HasFactory;
 
-    public function details() {
+    public function details()
+    {
         if ($this->type == 0) {
             return $this->hasOne(Journals::class);
-        }
-        else if ($this->type == 1) {
+        } else if ($this->type == 1) {
             return $this->hasOne(Books::class);
         }
     }
 
-    public function authors() {
+    public function authors()
+    {
         return $this->belongsToMany(Author::class, null, null, "author_name");
     }
-}
 
-?>
+    public function UserBookmarks()
+    {
+        return $this->belongsTo(PublicUser::class);
+    }
+}
