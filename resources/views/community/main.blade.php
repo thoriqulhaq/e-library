@@ -19,18 +19,23 @@
 
 <body>
     <!-- Navigation-->
-    <nav class="navbar navbar-light bg-light static-top">
-        <div class="container">
-            <a class="navbar-brand" href="/">
-                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="60" width="180" style="object-fit: cover;">
+    <nav class="navbar navbar-light bg-white static-top m-4 fixed-top" style="border-radius: 50px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
+    -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
+    -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
+        <div class="container-fluid ps-4 pe-4">
+            <a class="navbar-brand p-0" href="/">
+                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="70" width="190" style="object-fit: cover;">
             </a>
-            <a class="btn btn-primary" href="#signup" style="background-color: #008000;">Sign Up</a>
+            <div>
+                <a class="btn btn-primary ps-4 pe-4 me-2" href="#signup" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Login</a>
+                <a class="btn btn-primary ps-4 pe-4" href="#signup" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Sign Up</a>
+            </div>
         </div>
     </nav>
 
     @yield('page')
 
-    <footer class="footer bg-light">
+    <footer class="footer" style="background-color: rgb(213,253,160)">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 h-100 text-center text-lg-start my-auto">

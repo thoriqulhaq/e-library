@@ -3,9 +3,34 @@
   <head>
     <title>Upload New Book</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
+    <script>
+      var authorCount = 1;
+      function addAuthor() {
+        $("#authors").children().eq(-1).before(
+        `<div class="col-md-12">
+              <label class="form-label">Author</label>
+              <div class="input-group input-group-sm">
+                <input class="form-control" type="text" name="author[]" required/>
+                <i class="input-group-text material-icons" style="color: red; font-size: 18.5px" onclick="deleteAuthor(this)">delete</i>
+              </div>
+            </div>`);
+        
+            authorCount++;
+      }
+
+      function deleteAuthor(el) {
+        $(el).parent().parent().remove();
+      }
+    </script>
+
+    <!--
     <style>
       html, body {
       min-height: 100%;
@@ -160,48 +185,75 @@
       }
       }
     </style>
-
+    -->
 
   </head>
 
 
 
   <body>
-    <div class="testbox">
-      <form action="{{ url('/uploadbook') }}" method="post" enctype="multipart/form-data">
+    <div class="container">
+      <h1>Upload Book Form</h1>
+      <form class="row g-3" action="{{ url('/uploadbook') }}" method="post" enctype="multipart/form-data" >
         @csrf
-        <h1>Upload Book Form</h1>
-        <div class="item">
-          <p>Book Title</p>
-          <input type="text" name="title" placeholder="Title" required/>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12">
+              <label class="form-label">Book Title</label>
+              <input class="form-control" type="text" name="title" placeholder="Title" required/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Genre</label>
+              <input class="form-control" type="text" name="genre">
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Publisher</label>
+              <input class="form-control" type="text" name="publisher" required>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Place of Publication</label>
+              <input class="form-control" type="text" name="publish-place" required/>
+            </div>
+
+            <div class="col-md-6">
+              <label class="form-label">Date of Publication</label>
+              <div class="input-group">
+                <input class="form-control" type="date" name="publish-date" required/>
+                <i class="fas fa-calendar-alt input-group-text"></i>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">ISBN</label>
+              <input class="form-control" type="text" name="isbn" required/>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label">Edition</label>
+              <input class="form-control" type="text" name="edition">
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Book File</label>
+              <input class="form-control" type="file" name="book-file">
+            </div>
+            <div class="btn-block">
+              <button type="submit" href="/">Send</button>
+            </div>
+          </div>
         </div>
-        <div class="item">
-          <p>Author</p>
-          <input type="text" name="author" required/>
-        </div>
-        <div class="item">
-          <p>Publisher</p>
-          <input type="text" name="publisher" required>
-        </div>
-        <div class="item">
-          <p>Place of Publication</p>
-          <input type="text" name="publish-place" required/>
-        </div>
-        <div class="item">
-          <p>Date of Publication</p>
-          <input type="date" name="publish-date" required/>
-          <i class="fas fa-calendar-alt"></i>
-        </div>
-        <div class="item">
-          <p>ISBN</p>
-          <input type="text" name="isbn" required/>
-        </div>
-        <div class="item">
-          <p>Book File</p>
-          <input type="file" name="book-file">
-        </div>
-        <div class="btn-block">
-          <button type="submit" href="/">Send</button>
+        <div class="col-md-6">
+          <div class="row" id="authors">
+            <div class="col-md-12">
+              <label class="form-label">Author</label>
+              <div class="input-group input-group-sm">
+                <input class="form-control" type="text" name="author[]" required/>
+                <i class="input-group-text material-icons" style="color: blue; font-size: 18.5px" onclick="addAuthor()">add_box</i>
+              </div>
+            </div>
+            <div class="col-md-12">
+              <label class="form-label">Book Description</label>
+              <textarea class="form-control" name="description"></textarea>
+              <p>0/500</p>
+            </div>
+          </div>
         </div>
       </form>
     </div>
