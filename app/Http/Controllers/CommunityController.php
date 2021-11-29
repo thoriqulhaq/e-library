@@ -17,8 +17,8 @@ class CommunityController extends Controller
         $userid = 1;
         $academicResourceID = $id;
 
-        $academicResource = DB::table('academic_resources')->where('id',$academicResourceID)->get();
-        $bookmarkStatus = DB::table('academic_resources_public_users')->where('academic_resources_id',$academicResourceID)->where('users_id',$userid)->get();
+        $academicResource = DB::table('academic_resources')->where('id', $academicResourceID)->get();
+        $bookmarkStatus = DB::table('academic_resources_public_users')->where('academic_resources_id', $academicResourceID)->where('users_id', $userid)->get();
 
         return view('community.details', [
             'academicResource' => current(current($academicResource)),
