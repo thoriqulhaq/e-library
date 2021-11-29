@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class CommunityController extends Controller
 {
@@ -11,10 +12,18 @@ class CommunityController extends Controller
         return view('community.landingPage');
     }
 
-    public function viewDetail(Request $request)
+    public function viewDetail(Request $request, $id)
     {
+        $userid = 1;
+        $academicResourceID = $id;
 
-        return view('community.details');
+        $academicResource = DB::table('academic_resources')->where('id', $academicResourceID)->get();
+        $bookmarkStatus = DB::table('academic_resources_public_users')->where('academic_resources_id', $academicResourceID)->where('users_id', $userid)->get();
+
+        return view('community.details', [
+            'academicResource' => current(current($academicResource)),
+            'bookmarkStatus' => count(current($bookmarkStatus)),
+        ]);
     }
 
     public function viewLoginPage()
