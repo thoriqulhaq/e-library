@@ -17,13 +17,15 @@
                     <div class="col text-start m-4 " style="color: #212529">
                         <div class="row">
                             <div class="col">
-                                <h3 class="card-title"></h3>
+                                <h3 class="card-title">{{$academicResource->title}}</h3>
                             </div>
                             <div class="col me-0 text-end">
-                                <ion-icon class="p-0 m-0" style="font-size: 25px;" name="bookmark-outline"></ion-icon>
+                                <a href="#" style="color: inherit">
+                                    <ion-icon class="p-0 m-0" style="font-size: 25px;" name="{{$bookmarkStatus != 1 ? 'bookmark-outline' : 'bookmark'}}"></ion-icon>
+                                </a>
                             </div>
                         </div>
-                        <p class="card-text mt-3"></p>
+                        <p class="card-text mt-3">{{$academicResource->description}}</p>
                         <a class="btn btn-primary mt-5 ps-4 pe-4" href="{{route('download', ["File_Upload" => "1637349857AA MidTerm Template.pdf"])}}" style="background-color: #008000; border: #008000; border-radius: 50px;">Download</a>
                     </div>
                 </div>
