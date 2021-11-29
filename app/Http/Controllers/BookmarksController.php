@@ -23,24 +23,10 @@ class BookmarksController extends Controller
         ));
     }
 
-    public function addBookmark($object)
+    public function deleteBookmark($id)
     {
+        $bookmarks = DB::table('academic_resources_public_users')->where('users_id', '=', '1')->where('academic_resources_id', '=', $id)->delete();
 
-        if ($this->isBookmarked($object)) {
-            return $this->bookmarks()->where([
-                ['academic_resources_public_users.academic_resources_id', get_class($object)],
-                ['academic_resources_public_users.users_id', $object->id]
-            ])->delete();
-        }
-
-        return $this->bookmarks()->create(['academic_resources_id' => get_class($object), 'users_id' => $object->id]);
-    }
-
-    public function isBookmarked($object)
-    {
-        return $this->bookmarks()->where([
-            ['academic_resources_public_users.academic_resources_id', get_class($object)],
-            ['academic_resources_public_users.users_id', $object->id]
-        ])->exists();
+        return back();
     }
 }
