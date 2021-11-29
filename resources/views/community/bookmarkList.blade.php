@@ -19,7 +19,7 @@
                     <tbody>
                       <tr>
                         <td >
-                        <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=180><br>
+                        {{ $post->id }}
                         
                           
                       

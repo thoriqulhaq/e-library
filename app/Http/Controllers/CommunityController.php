@@ -11,8 +11,9 @@ class CommunityController extends Controller
         return view('community.landingPage');
     }
 
-    public function viewDetail()
+    public function viewDetail(Request $request)
     {
+
         return view('community.details');
     }
 
