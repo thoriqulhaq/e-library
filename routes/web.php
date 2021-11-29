@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\BookmarkController;
+use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
@@ -29,7 +29,7 @@ Route::get('/editbook/{id}', [StaffController::class, 'editBook']);
 Route::post('/editbook/{id}', [StaffController::class, 'editBookP']);
 Route::post('/uploadbook', [StaffController::class, 'submitUploadBook']);
 
-Route::get('/collection', [BookmarkController::class, 'viewBookmarkPage']);
+Route::get('/collection', [BookmarksController::class, 'viewBookmarkPage']);
 
 Route::get('/project-guidance', function () {
     return view('project-guidance');
@@ -44,10 +44,10 @@ Route::get('testDB', function () {
     return view('community.details', ['books' => $books]);
 });
 
-Route::get('/collection', function () {
+// Route::get('/collection', function () {
 
-    $academic_resources = DB::table('academic_resources')->get();
+//     $academic_resources = DB::table('academic_resources')->get();
 
 
-    return view('community.bookmarkList', ['academic_resources' => $academic_resources]);
-});
+//     return view('community.bookmarkList', ['academic_resources' => $academic_resources]);
+// });

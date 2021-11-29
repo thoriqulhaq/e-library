@@ -5,8 +5,8 @@
               <div class="container position-relative mt-5" style="padding: 120px 0; ">
               <div class="text-center" style="height:100vh;">
                 <h4 >Bookmark Collection<br></h4>
-                @foreach($academic_resources as $key => $data)
                 
+                @foreach ( $bookmarks as $bookmark )
                   <table class="table table-borderless text-center" style="">
                     <thead>
                       <tr class="">
@@ -20,7 +20,7 @@
                       <tr>
                         <td >
                         <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=180><br>
-                        {{$data->title}}<br>
+                        
                           
                       
                       </td>
@@ -30,7 +30,7 @@
                           <button type="button" class="btn " data-toggle="tooltip" data-original-title="Edit">
                             <ion-icon size="large" name="create"></ion-icon>
                           </button>
-                          <button type="button" class="btn"  onclick="showAlert()" data-toggle="tooltip" data-original-title="Delete">
+                          <button type="button" class="btn"data-toggle="tooltip" data-original-title="Delete">
                             <ion-icon size="large" name="trash"></ion-icon>
                           </button>
                         </td>
