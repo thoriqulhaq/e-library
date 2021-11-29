@@ -6,8 +6,9 @@
               <div class="text-center" style="height:100vh;">
                 <h4 >Bookmark Collection<br></h4>
                 
-                @foreach ( $bookmarks as $bookmark )
-                  <table class="table table-borderless text-center" style="">
+                
+                
+                  <table class="table table-borderedtext-center" style="">
                     <thead>
                       <tr class="">
                         <th></th>
@@ -17,9 +18,10 @@
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach ($academicResource as $datas)
                       <tr>
                         <td >
-                        {{ $post->id }}
+                       <a  href="{{url('/book/' . $datas->id)}}" style="color: inherit"> {{$datas->title}} </a>
                         
                           
                       
@@ -27,16 +29,16 @@
                        
                         
                         <td >
-                          <button type="button" class="btn " data-toggle="tooltip" data-original-title="Edit">
-                            <ion-icon size="large" name="create"></ion-icon>
-                          </button>
-                          <button type="button" class="btn"data-toggle="tooltip" data-original-title="Delete">
+                          
+                          <a  href="{{url('/delete-bookmark/' . $datas->id)}}" type="button" class="btn"data-toggle="tooltip" data-original-title="Delete">
                             <ion-icon size="large" name="trash"></ion-icon>
-                          </button>
+                          </a>
                         </td>
                       </tr>
 
                       
+
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -47,6 +49,7 @@
 
                 </script>
               </div>
-              @endforeach
+              
+               
           @endsection   
             
