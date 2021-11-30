@@ -26,7 +26,7 @@
                             </div>
                         </div>
                         <p class="card-text mt-3">{{$academicResource->description}}</p>
-                        <a class="btn btn-primary mt-5 ps-4 pe-4" href="{{route('download', ["File_Upload" => "1637349857AA MidTerm Template.pdf"])}}" style="background-color: #008000; border: #008000; border-radius: 50px;">Download</a>
+                        <a class="btn btn-primary mt-5 ps-4 pe-4" href="{{route('download', ["File_Upload" => "$academicResource->file_path"])}}" style="background-color: #008000; border: #008000; border-radius: 50px;">Download</a>
                     </div>
                 </div>
                 {{-- @endforeach --}}
