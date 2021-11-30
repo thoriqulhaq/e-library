@@ -4,34 +4,38 @@
 
               <div class="container position-relative mt-5" style="padding: 120px 0; ">
               <div class="text-center" style="height:100vh;">
-                <h4 >Bookmark Collection<br></h4>
+                <h4 class="mb-5">Bookmark Collection<br></h4>
                 
                 
                 
-                  <table class="table table-borderedtext-center" style="">
+                  <table class="table text-center align-middle table-responsive" style="background-color: rgb(213,253,160);">
                     <thead>
                       <tr class="">
-                        <th></th>
-                        
-                        
-                        <th style="width:50%"></th>
                       </tr>
                     </thead>
                     <tbody>
                       @foreach ($academicResource as $datas)
                       <tr>
-                        <td >
-                       <a  href="{{url('/book/' . $datas->id)}}" style="color: inherit"> {{$datas->title}} </a>
+                      <td style="width:33.3%">
+                        <a href="{{url('/book/' . $datas->id)}}">  <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" class="" width="160" height="200" alt="..."> </a> 
+                       
+                        
+                          
+                      
+                      </td>
+                        <td style="width:33.3%">
+                          
+                       <a  class="text-decoration-none" href="{{url('/book/' . $datas->id)}}" style="color: inherit"> {{$datas->title}} </a>
                         
                           
                       
                       </td>
                        
                         
-                        <td >
+                        <td style="width:33.3%">
                           
                           <a  href="{{url('/delete-bookmark/' . $datas->id)}}" type="button" class="btn"data-toggle="tooltip" data-original-title="Delete">
-                            <ion-icon size="large" name="trash"></ion-icon>
+                            <ion-icon style="font-size: 24px" name="trash"></ion-icon>
                           </a>
                         </td>
                       </tr>
