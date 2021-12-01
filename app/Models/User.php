@@ -29,6 +29,10 @@ class User extends Authenticatable
         'password'
     ];
 
+    protected $attributes = [
+        'is_admin' => false
+    ]
+
     /**
      * The attributes that should be hidden for serialization.
      *
