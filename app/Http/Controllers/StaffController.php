@@ -28,7 +28,9 @@ class StaffController extends Controller
         $acadres->publication_place = $request->input("publish-place");
         $acadres->publication_date = $request->input("publish-date");
         $acadres->type = 1;
-        $acadres->file_path = $request->file("book-file")->store("books");
+        if ($request->file("book-file") != null) {
+            $acadres->file_path = $request->file("book-file")->store("books");
+        }
 
         $acadres->save();
 
@@ -71,10 +73,7 @@ class StaffController extends Controller
         $book = AcademicResources::where("id", $id)->first();
 
         return view("staff.editbook", [
-            "title" => $book->title,
-            "genre" => $book->genre,
-            "description" => $book->description,
-            "publisher" => $book->details->info()[1], "publish_place" => $book->publication_place, "publish_date" => $book->publication_date, "isbn" => $book->details->info()[0]
+            "book" => $book, "authors" => $book->authors, "bookDetails" => $book->details, "id" => $id
         ]);
     }
 
@@ -82,7 +81,6 @@ class StaffController extends Controller
     {
         $acadres = AcademicResources::where("id", $id)->first();
 
-        $details = $acadres->details();
-        $this->saveBookInfo($request, $acadres, $details);
+        $this->saveBookInfo($request, $acadres, $acadres->details);
     }
 }
