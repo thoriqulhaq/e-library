@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [CommunityController::class, 'viewLandingPage']);
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
+
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 
