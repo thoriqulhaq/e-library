@@ -4,12 +4,33 @@
 
 
     <script>
+      $(document).ready(function () {
+
+        /*
+        $("form").submit(function (event) {
+          event.preventDefault();
+        });
+        */
+
+        $("textarea[name='description']").keyup(function (event) {
+          let chars = $(this).next();
+          chars.html($(this).val().length + "/500");
+        });
+      });
+
+
+      // Function to add more Author input fields
+      // Limit to 5 input fields
+      // First input field changed to delete after 5 fields
+      // Changed back to add when deletion of one input field
       var authorValue = [];
       var authorCount = 1;
       function addAuthor() {
-        var value = document.getElementById("author").value
+        var value = document.getElementById("authors").value
 
-        $("#authors").children().eq(-1).before(
+        // Find the last row (book description) and add input field before it
+        let currentElement = $("#authors").children();
+        currentElement.eq(-1).before(
         `<div class="col-md-12 mt-2 mb-3">
               <div class="input-group input-group-sm">
                 <input class="form-control" type="text" name="author[]" required value="` + value + `"/>
@@ -20,19 +41,50 @@
             authorCount++;
             authorValue.push(value);
             console.log(authorValue)
-            document.getElementById("author").value = "";
+            document.getElementById("authors").value = "";
+
+            // Change the first input field add button to delete, limit 5 authors
+            if (authorCount >= 5) {
+              currentElement.eq(0).find("i")
+              .attr("onclick", "deleteAuthor(this)")
+              .css("color", "red")
+              .html("delete");
+
+            }
       }
 
+      // Delete the Author input field
       function deleteAuthor(el) {
-        $(el).parent().parent().remove();
+        let currentElement = $(el).parent().parent();
+
+        // First input field has "label" tag, if will be deleted, put new label on second field before deletion
+        if (currentElement.has("label").length) {
+          currentElement.next().removeClass("mt-2")
+          .prepend("<label class='form-label'>Author</label>");
+        }
+
+        currentElement.remove();
+
+        // Change back the first Author input field to add if 5 authors limit is reached
+        currentElement = $("#authors").children().eq(0);
+        if (authorCount >= 5) {
+          currentElement.find("i")
+          .attr("onclick", "addAuthor()")
+          .css("color", "#008000")
+          .html("add_box");
+        }
+
+        authorCount--;
       }
+
+
     </script>
 
 
 
 
     <div class="container" style="height: 100vh; padding-top: 180px">
-      <h1 class="mb-5">Upload Book Form</h1>
+      <h1 class="mb-5">Upload Book</h1>
       <form class="row g-3" action="{{ url('/uploadbook') }}" method="post" enctype="multipart/form-data" >
         @csrf
         <div class="col-md-6">
@@ -63,7 +115,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label class="form-label">ISBN</label>
-              <input class="form-control" type="text" name="isbn" required/>
+              <input class="form-control" type="text" name="isbn" minlength="13" maxlength="13" required/>
             </div>
             <div class="col-md-6 mb-3">
               <label class="form-label">Edition</label>
@@ -71,7 +123,7 @@
             </div>
             <div class="mb-3">
               <label class="form-label">Book File</label>
-              <input class="form-control" type="file" name="book-file">
+              <input class="form-control" type="file" name="book-file" accept=".pdf" maxlength="1" required>
             </div>
           </div>
         </div>
@@ -86,7 +138,7 @@
             </div>
             <div class="col-md-12 mb-3">
               <label class="form-label">Book Description</label>
-              <textarea class="form-control" name="description"></textarea>
+              <textarea class="form-control" name="description" maxlength="500"></textarea>
               <p>0/500</p>
             </div>
           </div>
