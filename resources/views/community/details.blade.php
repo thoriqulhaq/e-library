@@ -1,5 +1,5 @@
 @extends('community.main')
-@section('title', 'Book 1')
+@section('title', 'Book')
 @section('page')
 
 <!-- Masthead-->
@@ -20,6 +20,7 @@
                                 <h3 class="card-title">{{$academicResource->title}}</h3>
                             </div>
                             <div class="col me-0 text-end">
+                                
                                 <a href="{{url('/delete-bookmark/' . $academicResource->id)}}" style="color: inherit">
                                     <ion-icon class="p-0 m-0" style="font-size: 25px;" name="{{$bookmarkStatus != 1 ? 'bookmark-outline' : 'bookmark'}}"></ion-icon>
                                 </a>

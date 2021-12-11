@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [CommunityController::class, 'viewLandingPage']);
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
+Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 
 
@@ -30,7 +31,7 @@ Route::get('/editbook/{id}', [StaffController::class, 'editBook']);
 Route::post('/editbook/{id}', [StaffController::class, 'editBookP']);
 Route::post('/uploadbook', [StaffController::class, 'submitUploadBook']);
 
-Route::get('/collection', [BookmarksController::class, 'viewBookmarkPage']);
+Route::get('/bookmarks', [BookmarksController::class, 'viewBookmarkPage']);
 
 Route::get('/project-guidance', function () {
     return view('project-guidance');
