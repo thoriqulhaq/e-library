@@ -4,6 +4,7 @@ use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
+use App\Http\Controllers\AdminAccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,3 +39,5 @@ Route::get('/project-guidance', function () {
 });
 
 Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->name('download');
+
+Route::get('/admin-account', [AdminAccountController::class, 'viewAdminAccount']);
