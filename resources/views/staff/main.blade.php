@@ -12,62 +12,60 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="{{URL::asset('css/styles.css')}}" rel="stylesheet" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
 </head>
 
 <body>
 
-    <!-- Navigation-->
-    <nav class="navbar navbar-light bg-white static-top m-4 fixed-top" style="border-radius: 50px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
-    -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
-    -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
-        <div class="container-fluid ps-4 pe-4">
-            <a class="navbar-brand p-0" href="/">
-                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="70" width="190" style="object-fit: cover;">
-            </a>
-            <div>
-                <a class="btn btn-primary ps-4 pe-4 me-2" href="#signup" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Login</a>
-                <a class="btn btn-primary ps-4 pe-4" href="#signup" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Sign Up</a>
+    <style>
+        body {
+        background-color: #eee
+    }
+    
+    .nav-link:hover {
+        background-color: #525252 !important
+    }
+    
+    .nav-link .fa {
+        transition: all 1s
+    }
+    
+    .nav-link:hover .fa {
+        transform: rotate(360deg)
+    }
+    </style>
+    <div class="d-flex">
+        <div class="d-flex flex-column vh-100 flex-shrink-0 p-3 text-white bg-success bg-gradient" style="width: 250px;"> <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="110" width="230" style="object-fit: cover;"></a>
+            <hr>
+            <ul class="nav nav-pills flex-column mb-auto">
+                <li> <a href="{{url("/admin")}}" class="nav-link {{$page == 1 ? 'active bg-white text-success' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
+                <li> <a href="{{url("/account-manager")}}" class="nav-link {{$page == 2 ? 'active bg-white text-success' : 'text-white'}}"> <i class="fa fa-user"></i><span class="ms-2">Account Manager</span> </a> </li>
+                {{-- <li> <a href="#" class="nav-link text-white"> <i class="fa fa-first-order"></i><span class="ms-2">My Orders</span> </a> </li>
+                <li> <a href="#" class="nav-link text-white"> <i class="fa fa-cog"></i><span class="ms-2">Settings</span> </a> </li>
+                <li> <a href="#" class="nav-link text-white"> <i class="fa fa-bookmark"></i><span class="ms-2">Bookmarks</span> </a> </li> --}}
+            </ul>
+            <hr>
+            <div class="dropdown"> <a href="#" class="d-flex align-items-center text-white text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">  <ion-icon class="me-2" style="font-size: 24px" name="person-circle"></ion-icon> <strong> Admin </strong> </a>
+                <ul class="dropdown-menu dropdown-menu-dark text-small shadow" aria-labelledby="dropdownUser1">
+                    <li><a class="dropdown-item" href="#">New project</a></li>
+                    <li><a class="dropdown-item" href="#">Settings</a></li>
+                    <li><a class="dropdown-item" href="#">Profile</a></li>
+                    <li>
+                        <hr class="dropdown-divider">
+                    </li>
+                    <li><a class="dropdown-item" href="#">Sign out</a></li>
+                </ul>
             </div>
         </div>
-    </nav>
-
-    @yield('page')
-
-    <footer class="footer" style="background-color: rgb(213,253,160)">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                    <ul class="list-inline mb-2">
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">About</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">Contact</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">Terms of Use</a></li>
-                        <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">Privacy Policy</a></li>
-                    </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; IAIN Ponorogo E-Library 2021. All Rights Reserved.</p>
-                </div>
-                <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
-                    <ul class="list-inline mb-0">
-                        <li class="list-inline-item me-4">
-                            <a href="#!"><i class="bi-facebook fs-3" style="color: #008000;"></i></a>
-                        </li>
-                        <li class="list-inline-item me-4">
-                            <a href="#!"><i class="bi-twitter fs-3" style="color: #008000;"></i></a>
-                        </li>
-                        <li class="list-inline-item">
-                            <a href="#!"><i class="bi-instagram fs-3" style="color: #008000;"></i></a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    
+        <div style="width: 100%">
+        @yield('page')
         </div>
-    </footer>
-
+    </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
