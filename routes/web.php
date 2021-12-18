@@ -41,7 +41,9 @@ Route::get('/project-guidance', function () {
 
 Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->name('download');
 
-Route::get('/admin-account', [AdminAccountController::class, 'viewAdminAccount']);
+Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount']);
+Route::post('/add-account', [AdminAccountController::class, 'addAdminAccount'])->name('addAccount');
+
 require __DIR__ . '/auth.php';
 
 /*

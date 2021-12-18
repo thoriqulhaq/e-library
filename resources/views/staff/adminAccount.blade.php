@@ -10,7 +10,8 @@
           <div class="">
             <div class="card-body">
               <h1 class="login-card-description">Add an Admin Account</h1>
-              <form method="post">
+              <form action="{{ route('addAccount') }}" method="post">
+                @csrf
                   <div class="form-group">
                     <label for="name" class="sr-only">Name</label>
                     <input type="name" name="name" id="name" class="form-control" placeholder="Name">
@@ -21,11 +22,11 @@
                   </div>
                   <div class="form-group">
                     <label for="password" class="sr-only">Password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                    <input type="password" name="password" id="password" class="form-control " placeholder="Password" required>
                   </div>
                   <div class="form-group">
                     <label for="password" class="sr-only">Re-enter Password</label>
-                    <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+                    <input type="password" name="password" id="password" class="form-control" placeholder="Password" required>
                   </div>
                   <div class="d-flex justify-content-center mt-5 ">
                     <button name="login" id="login" class="btn btn-block login-btn mx-2 mb-4 btn-success" type="submit">
