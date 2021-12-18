@@ -4,11 +4,11 @@
 
               <div class="container position-relative mt-5" style="padding: 120px 0; ">
               <div class="text-center" style="height:100vh;">
-                <h4 class="mb-5">Bookmark Collection<br></h4>
+                <h4 class="mb-5">Bookmarks<br></h4>
                 
                 
                 
-                  <table class="table text-center align-middle table-responsive" style="background-color: rgb(213,253,160);">
+                  <table class="table text-center align-middle table-responsive" style="background-color: rgb(213,253,160); border: 2px solid black; border-style: ridge;">
                     <thead>
                       <tr class="">
                       </tr>
@@ -17,7 +17,10 @@
                       @foreach ($academicResource as $datas)
                       <tr>
                       <td style="width:33.3%">
-                        <a href="{{url('/book/' . $datas->id)}}">  <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" class="" width="160" height="200" alt="..."> </a> 
+                        <a href="{{url('/book/' . $datas->id)}}">  
+                          <img src="https://covers.zlibcdn2.com/covers299/books/83/8c/c6/838cc6ac8cb0d8ddb98fdb1ae0c8a443.jpg"  width="160" height="200"  alt="...">
+                          
+                        </a> 
                        
                         
                           
