@@ -28,6 +28,7 @@ Route::get('/login', [CommunityController::class, 'viewloginPage']);
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
+Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
 Route::get('/uploadbook', [StaffController::class, 'viewUploadBook']);
 Route::get('/editbook/{id}', [StaffController::class, 'editBook']);
 Route::post('/editbook/{id}', [StaffController::class, 'editBookP']);
@@ -43,6 +44,7 @@ Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->nam
 
 Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount']);
 Route::post('/add-account', [AdminAccountController::class, 'addAdminAccount'])->name('addAccount');
+Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount');
 
 require __DIR__ . '/auth.php';
 

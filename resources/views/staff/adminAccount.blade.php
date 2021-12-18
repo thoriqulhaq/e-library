@@ -32,12 +32,12 @@
                     <button name="login" id="login" class="btn btn-block login-btn mx-2 mb-4 btn-success" type="submit">
                       Add
                     </button>
-                    <button href="" name="back" id="back" class="btn  login-btn mb-4 btn-danger ml-2" type="submit">
+                  </form>
+                    <a href="{{url('/account-manager')}}" name="back" class="btn  login-btn mb-4 btn-danger ml-2">
                       Back
-                    </button>
+                    </a>
                   </div>
-                </form>
-                
+
             </div>
           <!-- </div> -->
         </div>
