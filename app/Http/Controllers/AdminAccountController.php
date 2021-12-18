@@ -16,7 +16,7 @@ class AdminAccountController extends Controller
 {
     public function viewAdminAccount(Request $request)
     {
-        return view('staff.adminAccount');
+        return view('staff.addAccount');
     }
 
 
