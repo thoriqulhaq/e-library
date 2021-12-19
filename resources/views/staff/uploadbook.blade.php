@@ -6,15 +6,38 @@
     <script>
       $(document).ready(function () {
 
-        /*
+        
         $("form").submit(function (event) {
           event.preventDefault();
+          $.ajax({
+            url: "{{ url('/uploadbook') }}",
+            method: "POST",
+            headers: {"X-CSRF-TOKEN": "{{ csrf_token() }}"},
+            contentType: "multipart/form-data",
+            data: new FormData($("form")[0]),
+            processData: false,
+            error: function(xhr, status, err) {
+              $("p").html("Fail" + xhr.status);
+            },
+            success: function(response, status) {
+              $("p").html("Success" + status);
+            }
+          });
         });
-        */
+        
 
+
+        // Attach keyup event on Book Description to update character count
         $("textarea[name='description']").keyup(function (event) {
           let chars = $(this).next();
           chars.html($(this).val().length + "/500");
+        });
+
+        window.addEventListener("beforeunload", function (event) {
+          event.preventDefault();
+          let confirmMessage = "\o/";
+
+          return confirmMessage;
         });
       });
 
