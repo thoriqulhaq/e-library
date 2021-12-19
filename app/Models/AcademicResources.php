@@ -23,6 +23,16 @@ class AcademicResources extends Model
         return $this->belongsToMany(Author::class, null, null, "author_name");
     }
 
+    public function addAuthor($name) {
+        $author = Author::where("name", $name)->first();
+        if ($author == null) {
+            $author = new Author();
+            $author->name = $name;
+            $author->save();
+        }
+        $this->authors()->attach($name);
+    }
+
     public function UserBookmarks()
     {
         return $this->belongsTo(PublicUser::class);
