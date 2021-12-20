@@ -33,6 +33,16 @@ class AcademicResources extends Model
         $this->authors()->attach($name);
     }
 
+
+    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path) {
+        $this->title = $title;
+        $this->genre = $genre;
+        $this->publication_place = $pplace;
+        $this->publication_date = $pdate;
+        $this->file_path = $path;
+    }
+
+
     public function UserBookmarks()
     {
         return $this->belongsTo(PublicUser::class);
