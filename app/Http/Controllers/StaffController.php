@@ -27,10 +27,4 @@ class StaffController extends Controller
             'page' => 2
         ]);
     }
-
-
-    public function viewUploadBook()
-    {
-        return view('staff.uploadbook');
-    }
 }
