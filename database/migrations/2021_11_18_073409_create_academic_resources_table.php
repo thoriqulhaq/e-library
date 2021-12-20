@@ -19,7 +19,7 @@ class CreateAcademicResourcesTable extends Migration
             $table->string("description", 500)->nullable();
             $table->string("genre")->nullable();
             $table->string("publication_place");
-            $table->string("publication_date");
+            $table->date("publication_date");
             $table->tinyInteger("type");
             $table->bigInteger("download_count");
             $table->string("file_path");
