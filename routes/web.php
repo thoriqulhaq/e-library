@@ -1,8 +1,10 @@
 <?php
+
 use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
+use App\Http\Controllers\AdminAccountController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,16 +23,18 @@ Route::get('/', [CommunityController::class, 'viewLandingPage']);
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
+Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
+Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
 Route::get('/uploadbook', [StaffController::class, 'viewUploadBook']);
 Route::get('/editbook/{id}', [StaffController::class, 'editBook']);
 Route::post('/editbook/{id}', [StaffController::class, 'editBookP']);
 Route::post('/uploadbook', [StaffController::class, 'submitUploadBook']);
 
-Route::get('/collection', [BookmarksController::class, 'viewBookmarkPage']);
+Route::get('/bookmarks', [BookmarksController::class, 'viewBookmarkPage']);
 
 Route::get('/project-guidance', function () {
     return view('project-guidance');
@@ -38,7 +42,11 @@ Route::get('/project-guidance', function () {
 
 Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->name('download');
 
-require __DIR__.'/auth.php';
+Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount']);
+Route::post('/add-account', [AdminAccountController::class, 'addAdminAccount'])->name('addAccount');
+Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount');
+
+require __DIR__ . '/auth.php';
 
 /*
 Route::get('/', function () {
