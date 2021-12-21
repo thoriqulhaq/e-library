@@ -27,6 +27,7 @@ Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('deta
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
 Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
+Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
