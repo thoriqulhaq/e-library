@@ -5,8 +5,8 @@
 
     <script>
       $(document).ready(function () {
-
         
+        /*
         $("form").submit(function (event) {
           event.preventDefault();
           $.ajax({
@@ -14,17 +14,17 @@
             method: "POST",
             headers: {"X-CSRF-TOKEN": "{{ csrf_token() }}"},
             contentType: "multipart/form-data",
-            data: new FormData($("form")[0]),
+            data: new FormData(document.querySelector("form")),
             processData: false,
             error: function(xhr, status, err) {
-              $("p").html("Fail" + xhr.status);
+              alert("Upload Fail, " + xhr.status);
             },
             success: function(response, status) {
-              $("p").html("Success" + status);
+              alert("Upload Success");
             }
           });
         });
-        
+        */
 
 
         // Attach keyup event on Book Description to update character count
