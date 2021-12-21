@@ -21,7 +21,8 @@ class BookController extends Controller
         $book = new Books();
 
         $fpath = $request->file("book-file")->store("");
-        $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), $fpath);
+        $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), $fpath, "");
+        $acadres->type = 1;
         $acadres->save();
 
         $book->setAttributes($request->publisher, $request->isbn, $request->edition);
@@ -41,8 +42,6 @@ class BookController extends Controller
                 $acadres->authors()->attach($name);
             }
         }
-
-        return redirect("/");
     }
 
     public function saveBookInfo(Request $request, AcademicResources $acadres, Books $book)
@@ -82,7 +81,7 @@ class BookController extends Controller
     {
         $acadres = AcademicResources::where("id", $id)->first();
 
-        $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"));
+        $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), "", "", 0);
         $acadres->save();
 
         $book = $acadres->details;
@@ -96,7 +95,7 @@ class BookController extends Controller
 
 
         // Attach every authors in the forms to the book
-        $authorsname = $request->$author;
+        $authorsname = $request->author;
         foreach ($authorsname as $name) {
             if ($name != null) {
                 $author = Author::where("name", $name)->first();
