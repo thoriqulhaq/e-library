@@ -39,8 +39,8 @@
         <div class="d-flex flex-column vh-100 flex-shrink-0 p-3 text-white bg-success bg-gradient" style="width: 250px;"> <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none"><img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="110" width="230" style="object-fit: cover;"></a>
             <hr>
             <ul class="nav nav-pills flex-column mb-auto">
-                <li> <a href="{{url("/admin")}}" class="nav-link {{$page == 1 ? 'active bg-white text-success' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
-                <li> <a href="{{url("/account-manager")}}" class="nav-link {{$page == 2 ? 'active bg-white text-success' : 'text-white'}}"> <i class="fa fa-user"></i><span class="ms-2">Account Manager</span> </a> </li>
+                <li> <a href="{{url("/admin")}}" class="nav-link {{$page ?? '' == 1 ? 'active bg-white text-success' : 'text-white'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
+                <li> <a href="{{url("/account-manager")}}" class="nav-link {{$page ?? '' == 2 ? 'active bg-white text-success' : 'text-white'}}"> <i class="fa fa-user"></i><span class="ms-2">Account Manager</span> </a> </li>
                 {{-- <li> <a href="#" class="nav-link text-white"> <i class="fa fa-first-order"></i><span class="ms-2">My Orders</span> </a> </li>
                 <li> <a href="#" class="nav-link text-white"> <i class="fa fa-cog"></i><span class="ms-2">Settings</span> </a> </li>
                 <li> <a href="#" class="nav-link text-white"> <i class="fa fa-bookmark"></i><span class="ms-2">Bookmarks</span> </a> </li> --}}
