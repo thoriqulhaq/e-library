@@ -23,6 +23,26 @@ class AcademicResources extends Model
         return $this->belongsToMany(Author::class, null, null, "author_name");
     }
 
+    public function addAuthor($name) {
+        $author = Author::where("name", $name)->first();
+        if ($author == null) {
+            $author = new Author();
+            $author->name = $name;
+            $author->save();
+        }
+        $this->authors()->attach($name);
+    }
+
+
+    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path) {
+        $this->title = $title;
+        $this->genre = $genre;
+        $this->publication_place = $pplace;
+        $this->publication_date = $pdate;
+        $this->file_path = $path;
+    }
+
+
     public function UserBookmarks()
     {
         return $this->belongsTo(PublicUser::class);

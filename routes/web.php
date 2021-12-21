@@ -5,6 +5,7 @@ use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\AdminAccountController;
+use App\Http\Controllers\BookController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -29,10 +30,12 @@ Route::get('/login', [CommunityController::class, 'viewloginPage']);
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
 Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
-Route::get('/uploadbook', [StaffController::class, 'viewUploadBook']);
-Route::get('/editbook/{id}', [StaffController::class, 'editBook']);
-Route::post('/editbook/{id}', [StaffController::class, 'editBookP']);
-Route::post('/uploadbook', [StaffController::class, 'submitUploadBook']);
+
+
+Route::get('/uploadbook', [BookController::class, 'viewUploadBook']);
+Route::get('/editbook/{id}', [BookController::class, 'editBook']);
+Route::post('/editbook/{id}', [BookController::class, 'editBookP']);
+Route::post('/uploadbook', [BookController::class, 'submitUploadBook']);
 
 Route::get('/bookmarks', [BookmarksController::class, 'viewBookmarkPage']);
 
