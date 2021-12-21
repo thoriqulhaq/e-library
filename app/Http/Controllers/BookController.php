@@ -20,7 +20,7 @@ class BookController extends Controller
         $acadres = new AcademicResources();
         $book = new Books();
 
-        $fpath = $request->file("book-file")->store("");
+        $fpath = $request->file("book-file")->store("books");
         $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), $fpath, "");
         $acadres->type = 1;
         $acadres->save();
