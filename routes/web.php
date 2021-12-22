@@ -6,6 +6,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\AcademicResourceController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,8 @@ Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark
 Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
+Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
+Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
