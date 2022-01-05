@@ -73,7 +73,7 @@ class BookController extends Controller
         }
 
         return view("staff.editbook", [
-            "book" => $book, "authors" => $book->authors, "bookDetails" => $book->details, "id" => $id
+            "book" => $book, "authors" => $book->authors, "bookDetails" => $book->details, "id" => $id, 'page' => 3
         ]);
     }
 
@@ -111,6 +111,7 @@ class BookController extends Controller
 
     public function viewUploadBook()
     {
-        return view('staff.uploadbook');
+
+        return view('staff.uploadbook', ['page' => 3]);
     }
 }

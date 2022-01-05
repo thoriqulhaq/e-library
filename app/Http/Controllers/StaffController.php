@@ -34,7 +34,7 @@ class StaffController extends Controller
 
         return view('staff.contentManager', [
             'datas' => $datas,
-            'page' => 2
+            'page' => 3
         ]);
     }
 
