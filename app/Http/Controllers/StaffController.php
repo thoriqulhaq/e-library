@@ -28,6 +28,15 @@ class StaffController extends Controller
         ]);
     }
 
+    public function viewContentManager()
+    {
+        $datas = DB::table('academic_resources')->get();
+
+        return view('staff.contentManager', [
+            'datas' => $datas,
+            'page' => 3
+        ]);
+    }
 
     public function viewUploadBook()
     {
