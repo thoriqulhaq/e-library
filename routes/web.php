@@ -32,6 +32,7 @@ Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('d
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
 Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
+Route::get('/content-manager', [StaffController::class, 'viewContentManager']);
 
 Route::get('/search', [AcademicResourceController::class, 'search']);
 
