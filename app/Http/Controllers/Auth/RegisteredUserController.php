@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\PublicUser;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -42,10 +43,14 @@ class RegisteredUserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
-            'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $dt = new PublicUser();
+        $dt->id_number = $request->nim;
+
+        $user->details()->save($dt);
 
         event(new Registered($user));
 
