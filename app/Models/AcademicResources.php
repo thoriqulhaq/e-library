@@ -34,12 +34,13 @@ class AcademicResources extends Model
     }
 
 
-    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path) {
+    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path, ?string $cpath) {
         $this->title = $title;
         $this->genre = $genre;
         $this->publication_place = $pplace;
         $this->publication_date = $pdate;
         $this->file_path = $path;
+        $this->cover_path = $cpath;
     }
 
 
