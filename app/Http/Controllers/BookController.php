@@ -112,6 +112,7 @@ class BookController extends Controller
         }
 
         $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"));
+
         $acadres->save();
 
         $book = $acadres->details;
@@ -125,7 +126,7 @@ class BookController extends Controller
 
 
         // Attach every authors in the forms to the book
-        $authorsname = $request->$author;
+        $authorsname = $request->author;
         foreach ($authorsname as $name) {
             if ($name != null) {
                 $author = Author::where("name", $name)->first();

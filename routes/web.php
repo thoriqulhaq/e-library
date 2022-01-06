@@ -6,6 +6,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\AcademicResourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,11 +27,13 @@ Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('deta
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
 Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
+Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
 Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
 
+Route::get('/search', [AcademicResourceController::class, 'search']);
 
 Route::get('/uploadbook', [BookController::class, 'viewUploadBook']);
 Route::get('/editbook/{id}', [BookController::class, 'editBook']);
