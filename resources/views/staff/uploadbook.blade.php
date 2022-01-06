@@ -21,12 +21,6 @@
 
     <script>
       $(document).ready(function () {
-<<<<<<< HEAD
-
-=======
-        
-        /*
->>>>>>> 7f25b043744767458e90b31293b322915e922160
         $("form").submit(function (event) {
           event.preventDefault();
           $("button[type='submit']").attr("disabled", true);
@@ -44,7 +38,6 @@
             url: "{{ url('/uploadbook') }}",
             method: "POST",
             headers: {"X-CSRF-TOKEN": "{{ csrf_token() }}"},
-<<<<<<< HEAD
             contentType: false,
             data: new FormData($("form")[0]),
             processData: false,
@@ -69,20 +62,6 @@
             }
           });
         });
-=======
-            contentType: "multipart/form-data",
-            data: new FormData(document.querySelector("form")),
-            processData: false,
-            error: function(xhr, status, err) {
-              alert("Upload Fail, " + xhr.status);
-            },
-            success: function(response, status) {
-              alert("Upload Success");
-            }
-          });
-        });
-        */
->>>>>>> 7f25b043744767458e90b31293b322915e922160
 
 
         // Attach keyup event on Book Description to update character count
