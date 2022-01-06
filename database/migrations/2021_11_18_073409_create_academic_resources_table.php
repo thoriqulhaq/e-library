@@ -23,6 +23,7 @@ class CreateAcademicResourcesTable extends Migration
             $table->tinyInteger("type");
             $table->bigInteger("download_count");
             $table->string("file_path");
+            $table->string("cover_path");
             $table->timestamps();
         });
     }
