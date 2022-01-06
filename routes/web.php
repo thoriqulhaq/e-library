@@ -26,7 +26,14 @@ Route::get('/', [CommunityController::class, 'viewLandingPage']);
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
-Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
+Route::get('/bookmarks', [
+    'as' => 'bookmarks',
+    'uses' => [BookmarksController::class, 'index']
+]);
+Route::post('/bookmarks/add', [
+    'as' => 'add',
+    'uses' => [BookmarksController::class,'addBookmark']
+]);
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);

@@ -9,11 +9,13 @@
     <title>Upload Journal</title>
 
     
-  </head>
+  </head> 
   <body>
-    @extends('staff.main')
+    @extends('community.main') 
     @section('title', 'Upload New Journal')
     @section('page')
+    
+    
 
     <br>
     <div class="container" style=" height: 100vh; padding:100px" >
@@ -71,6 +73,7 @@
                 </div>
               </div>
             </div>
+            
           <div class="tab-pane fade" id="about"><!-- isi about taruh didalam ini-->
             <div class="row" id="ab1">
               <textarea class="form control" name="description" maxlength="500" placeholder="Description..." id="msg"></textarea>
@@ -78,8 +81,13 @@
             </div>
           </div>
         </form>
+       
       </div>
+      @endsection
+
     </div>
+    
+    
 
      
 
@@ -88,5 +96,5 @@
     <script src="tester.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   </body>
-  @endsection
+  
 </html>
