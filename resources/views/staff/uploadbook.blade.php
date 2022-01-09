@@ -1,3 +1,19 @@
+<div class="modal fade" id="testModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="modal-title material-icons" style="font-size: 30px; color: blue;">info</i>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @extends('staff.main')
 @section('title', 'Upload New Book')
 @section('page')
@@ -5,26 +21,47 @@
 
     <script>
       $(document).ready(function () {
-        
-        /*
         $("form").submit(function (event) {
           event.preventDefault();
+          $("button[type='submit']").attr("disabled", true);
+          $("progress").removeAttr("hidden");
+
           $.ajax({
+            xhr: function () {
+              let xhr = new XMLHttpRequest();
+              xhr.upload.addEventListener("progress", function (ev) {
+                $("progress").val(ev.loaded / ev.total);
+              });
+
+              return xhr;
+            },
             url: "{{ url('/uploadbook') }}",
             method: "POST",
             headers: {"X-CSRF-TOKEN": "{{ csrf_token() }}"},
-            contentType: "multipart/form-data",
-            data: new FormData(document.querySelector("form")),
+            contentType: false,
+            data: new FormData($("form")[0]),
             processData: false,
-            error: function(xhr, status, err) {
-              alert("Upload Fail, " + xhr.status);
+
+            error: function (xhr, status, err) {
+              $(".modal-body").html("Fail to upload book: " + xhr.responseText);
+
+              (new bootstrap.Modal(document.getElementById("testModal"), { })).show();
+              $("button[type='submit']").removeAttr("disabled");
             },
-            success: function(response, status) {
-              alert("Upload Success");
+
+            success: function (response, status, xhr) {
+              if (xhr.status == 201) {
+                window.location.href = xhr.getResponseHeader("Location");
+              }
+              else {
+                $(".modal-body").html(xhr.responseText);
+
+                (new bootstrap.Modal(document.getElementById("testModal"), { })).show();
+                $("button[type='submit']").removeAttr("disabled");
+              }
             }
           });
         });
-        */
 
 
         // Attach keyup event on Book Description to update character count
@@ -32,6 +69,7 @@
           let chars = $(this).next();
           chars.html($(this).val().length + "/500");
         });
+
 
         window.addEventListener("beforeunload", function (event) {
           event.preventDefault();
@@ -100,13 +138,12 @@
         authorCount--;
       }
 
-
     </script>
 
 
 
 
-    <div class="container" style="height: 100vh; padding-top: 180px">
+    <div class="container" style="height: 100vh; padding-top: 50px">
       <h1 class="mb-5">Upload Book</h1>
       <form class="row g-3" action="{{ url('/uploadbook') }}" method="post" enctype="multipart/form-data" >
         @csrf
@@ -114,7 +151,7 @@
           <div class="row">
             <div class="col-md-12 mb-3">
               <label class="form-label">Book Title</label>
-              <input class="form-control" type="text" name="title" placeholder="Title" required/>
+              <input class="form-control" type="text" name="title" required/>
             </div>
             <div class="col-md-6 mb-3">
               <label class="form-label">Genre</label>
@@ -147,6 +184,7 @@
             <div class="mb-3">
               <label class="form-label">Book File</label>
               <input class="form-control" type="file" name="book-file" accept=".pdf" maxlength="1" required>
+              <progress value="0" hidden></progress>
             </div>
           </div>
         </div>

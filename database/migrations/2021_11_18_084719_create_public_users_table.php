@@ -14,10 +14,10 @@ class CreatePublicUsersTable extends Migration
     public function up()
     {
         Schema::create('public_users', function (Blueprint $table) {
-            $table->unsignedBigInteger("users_id")->primary();
+            $table->unsignedBigInteger("user_id")->primary();
             $table->string("id_number")->unique();
 
-            $table->foreign("users_id")->references("id")->on("users");
+            $table->foreign("user_id")->references("id")->on("users");
         });
     }
 
