@@ -106,4 +106,10 @@ class StaffController extends Controller
 
         $this->saveBookInfo($request, $acadres, $acadres->details);
     }
+
+    public function deleteContent($id)
+    {
+        $data = DB::table('academic_resources')->where('id', '=', $id)->delete();
+        return back();
+    }
 }

@@ -19,7 +19,7 @@ class CreateJournalsTable extends Migration
             $table->tinyInteger("issue")->nullable();
             $table->timestamps();
 
-            $table->foreign("academic_resources_id")->references("id")->on("academic_resources");
+            $table->foreign("academic_resources_id")->references("id")->on("academic_resources")->onDelete('cascade');;
         });
     }
 

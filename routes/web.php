@@ -52,7 +52,7 @@ Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->nam
 Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount']);
 Route::post('/add-account', [AdminAccountController::class, 'addAdminAccount'])->name('addAccount');
 Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount');
-
+Route::get('/delete-content/{id}', [StaffController::class, 'deleteContent'])->name('deleteContent');
 require __DIR__ . '/auth.php';
 
 /*
