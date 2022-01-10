@@ -21,8 +21,26 @@
 
     <script>
       $(document).ready(function () {
+        
+
         $("form").submit(function (event) {
           event.preventDefault();
+          let isbn = $("input[name='isbn']");
+          let sum = 0;
+          for (let i = 0; i < isbn.val().length; i++) {
+            sum += (isbn.val()[i] * Math.floor(3 / ((i + 1) % 2 + 1)));
+          }
+          if (sum % 10 == 0) {
+            isbn[0].setCustomValidity("");
+            isbn[0].reportValidity();
+          }
+          else {
+            isbn[0].setCustomValidity("ISBN is invalid");
+            isbn[0].reportValidity();
+            return;
+          }
+          
+
           $("button[type='submit']").attr("disabled", true);
           $("progress").removeAttr("hidden");
 
@@ -175,7 +193,7 @@
             </div>
             <div class="col-md-6 mb-3">
               <label class="form-label">ISBN</label>
-              <input class="form-control" type="text" name="isbn" minlength="13" maxlength="13" required/>
+              <input class="form-control" type="text" name="isbn" minlength="13" maxlength="13" id="isbn" required/>
             </div>
             <div class="col-md-6 mb-3">
               <label class="form-label">Edition</label>
