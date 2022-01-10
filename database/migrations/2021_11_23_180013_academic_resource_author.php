@@ -18,7 +18,7 @@ class AcademicResourceAuthor extends Migration
             $table->unsignedBigInteger("academic_resources_id");
 
             $table->foreign("author_name")->references("name")->on("authors");
-            $table->foreign("academic_resources_id")->references("id")->on("academic_resources");
+            $table->foreign("academic_resources_id")->references("id")->on("academic_resources")->onDelete('cascade');;
 
             $table->primary(["author_name", "academic_resources_id"], "PK_Key_academic_resources_authors");
         });
