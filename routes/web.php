@@ -7,6 +7,8 @@ use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\AcademicResourceController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,13 +23,25 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', [CommunityController::class, 'viewLandingPage']);
+Route::get('/', [CommunityController::class, 'viewLandingPage'])->name('index');
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
 Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
+Route::get('/home', [CommunityController::class, 'authRedirect']);
+Route::get('logouts', function (Request $request) {
+
+    Auth::logout();
+
+    $request->session()->invalidate();
+
+    $request->session()->regenerateToken();
+
+
+    return redirect()->route('index');
+})->name('logouts');
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);

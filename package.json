@@ -27,5 +27,8 @@
         "tailwindcss": "^2.0.1",
         "vue": "^3.2.26",
         "vue-loader": "^16.1.2"
+    },
+    "dependencies": {
+        "vue-laravel-csrf": "^1.0.0"
     }
 }
