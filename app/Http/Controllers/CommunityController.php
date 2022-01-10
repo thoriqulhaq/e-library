@@ -7,6 +7,7 @@ use DB;
 use Jenssegers\Agent\Agent;
 use Laravel\Jetstream\Jetstream;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 class CommunityController extends Controller
 {
@@ -85,5 +86,14 @@ class CommunityController extends Controller
     public function viewLoginPage()
     {
         return view('community.login');
+    }
+
+    public function authRedirect()
+    {
+        if (Auth::user()->is_admin) {
+            return redirect('/admin');
+        } else {
+            return redirect('/');
+        }
     }
 }
