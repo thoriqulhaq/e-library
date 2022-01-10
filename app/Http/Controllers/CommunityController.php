@@ -70,7 +70,7 @@ class CommunityController extends Controller
 
         $academicResource = DB::table('academic_resources')->where('id', $academicResourceID)->get();
         $academicResourceAuthor = DB::table('academic_resources_author')->where('academic_resources_id', $academicResourceID)->get();
-        $bookmarkStatus = DB::table('academic_resources_public_users')->where('academic_resources_id', $academicResourceID)->where('users_id', $userid)->get();
+        $bookmarkStatus = DB::table('academic_resources_public_users')->where('academic_resources_id', $academicResourceID)->where('user_id', $userid)->get();
 
         $string = current(current($academicResource))->genre;
         $academicResourceGenre = explode(',', $string);

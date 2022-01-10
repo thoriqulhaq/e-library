@@ -24,7 +24,7 @@
     -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
         <div class="container-fluid ps-4 pe-4">
             <a class="navbar-brand p-0" href="/">
-                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="70" width="190" style="object-fit: cover;">
+                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="90" width="210" style="object-fit: cover;">
             </a>
             <div>
                 @if (Auth::check())
