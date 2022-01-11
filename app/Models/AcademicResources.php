@@ -33,7 +33,7 @@ class AcademicResources extends Model
         $this->authors()->attach($name);
     }
 
-    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path, ?string $cpath, $dcount = 0) {
+    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path, ?string $cpath) {
 
         $this->title = $title;
         $this->genre = $genre;
@@ -41,7 +41,6 @@ class AcademicResources extends Model
         $this->publication_date = $pdate;
         $this->file_path = $path;
 
-        $this->download_count = $dcount;
         $this->cover_path = $cpath;
     }
 
