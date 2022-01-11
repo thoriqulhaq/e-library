@@ -9,10 +9,7 @@ class Journals extends Model
 {
     use HasFactory;
 
-    protected $atrributes = [
-        "volume",
-        "issue"
-    ];
+    protected $primaryKey = "academic_resources_id";
 
     public function info() {
         return [$this->volume, $this->issue];
