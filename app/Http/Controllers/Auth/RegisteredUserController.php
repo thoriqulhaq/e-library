@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $dt = new PublicUser();
-        $dt->id_number = $request->nim;
+        $dt->id_number = $request->id_number;
 
         $user->details()->save($dt);
 
