@@ -68,22 +68,16 @@
                         <h4>NEW RELEASES</h4>
                     </div>
                     <div class="d-flex flex-wrap justify-content-center">
+                        @foreach ( $academicResource as $data )
                         <div class="card m-2 bg-light" style="width: 15rem;">
-                            <img src="https://covers.zlibcdn2.com/covers299/books/83/8c/c6/838cc6ac8cb0d8ddb98fdb1ae0c8a443.jpg" class="card-img-top" alt="...">
+                            <img src="{{$data->cover_path ?? ""}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
-                                    <h5 class="card-title">Clean Code</h5>
+                                <a href="{{url('/book/' . $data->id)}}" class="text-decoration-none text-reset">
+                                    <h5 class="card-title">{{$data->title}}</h5>
                                 </a>
                             </div>
                         </div>
-                        <div class="card m-2 bg-light" style="width: 15rem;">
-                            <img src="https://covers.zlibcdn2.com/covers299/books/83/8c/c6/838cc6ac8cb0d8ddb98fdb1ae0c8a443.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
-                                    <h5 class="card-title">Clean Code</h5>
-                                </a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>
@@ -95,22 +89,16 @@
                         <h4>MOST DOWNLOAD</h4>
                     </div>
                     <div class="d-flex flex-wrap justify-content-center">
+                        @foreach ( $academicResourceSortByDownload as $data )
                         <div class="card m-2 bg-light" style="width: 15rem;">
-                            <img src="https://covers.zlibcdn2.com/covers299/books/83/8c/c6/838cc6ac8cb0d8ddb98fdb1ae0c8a443.jpg" class="card-img-top" alt="...">
+                            <img src="{{$data->cover_path ?? ""}}" class="card-img-top" alt="...">
                             <div class="card-body">
-                                <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
-                                    <h5 class="card-title">Clean Code</h5>
+                                <a href="{{url('/book/' . $data->id)}}" class="text-decoration-none text-reset">
+                                    <h5 class="card-title">{{$data->title}}</h5>
                                 </a>
                             </div>
                         </div>
-                        <div class="card m-2 bg-light" style="width: 15rem;">
-                            <img src="https://covers.zlibcdn2.com/covers299/books/83/8c/c6/838cc6ac8cb0d8ddb98fdb1ae0c8a443.jpg" class="card-img-top" alt="...">
-                            <div class="card-body">
-                                <a href="{{ route('detail') }}" class="text-decoration-none text-reset">
-                                    <h5 class="card-title">Clean Code</h5>
-                                </a>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

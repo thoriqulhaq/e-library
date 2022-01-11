@@ -4,39 +4,48 @@
 
               <div class="container position-relative mt-5" style="padding: 120px 0; ">
               <div class="text-center" style="height:100vh;">
-                <h4 >Bookmark Collection<br></h4>
+                <h4 class="mb-5">Bookmarks<br></h4>
                 
-                @foreach ( $bookmarks as $bookmark )
-                  <table class="table table-borderless text-center" style="">
+                
+                
+                  <table class="table text-center align-middle table-responsive" style="background-color: rgb(213,253,160); border: 2px solid black; border-style: ridge;">
                     <thead>
                       <tr class="">
-                        <th></th>
-                        
-                        
-                        <th style="width:50%"></th>
                       </tr>
                     </thead>
                     <tbody>
+                      @foreach ($academicResource as $datas)
                       <tr>
-                        <td >
-                        <img src="https://drive.google.com/uc?export=view&id=14r5VEmUBjaVOYQgJ8sZrRXRTLK15YJvv" height=200 width=180><br>
+                      <td style="width:33.3%">
+                        <a href="{{url('/book/' . $datas->id)}}">  
+                          <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/Cover/{{$academicResource->cover_path}}"  width="160" height="200"  alt="...">
+                          
+                        </a> 
+                       
+                        
+                          
+                      
+                      </td>
+                        <td style="width:33.3%">
+                          
+                       <a  class="text-decoration-none" href="{{url('/book/' . $datas->id)}}" style="color: inherit"> {{$datas->title}} </a>
                         
                           
                       
                       </td>
                        
                         
-                        <td >
-                          <button type="button" class="btn " data-toggle="tooltip" data-original-title="Edit">
-                            <ion-icon size="large" name="create"></ion-icon>
-                          </button>
-                          <button type="button" class="btn"data-toggle="tooltip" data-original-title="Delete">
-                            <ion-icon size="large" name="trash"></ion-icon>
-                          </button>
+                        <td style="width:33.3%">
+                          
+                          <a  href="{{url('/delete-bookmark/' . $datas->id)}}" type="button" class="btn"data-toggle="tooltip" data-original-title="Delete">
+                            <ion-icon style="font-size: 24px" name="trash"></ion-icon>
+                          </a>
                         </td>
                       </tr>
 
                       
+
+                      @endforeach
                     </tbody>
                   </table>
                 </div>
@@ -47,6 +56,7 @@
 
                 </script>
               </div>
-              @endforeach
+              
+               
           @endsection   
             

@@ -27,8 +27,25 @@
                 <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="70" width="190" style="object-fit: cover;">
             </a>
             <div>
-                <a class="btn btn-primary ps-4 pe-4 me-2" href="#signup" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Login</a>
-                <a class="btn btn-primary ps-4 pe-4" href="#signup" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Sign Up</a>
+                @if (Auth::check())
+                   <div class="dropdown">
+                        <a class="text text-dark text-decoration-none dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{ Auth::user()->name }}
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                            <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profile</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <form action="{{ route('logout') }}" method="POST">
+                                @csrf
+                            <li><button type="submit" class="dropdown-item">Logout</button></li>
+                            </form>
+                        </ul>
+                    </div>
+                @else
+                <a class="btn btn-primary ps-4 pe-4 me-2" href="{{url("/login")}}" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Login</a>
+                <a class="btn btn-primary ps-4 pe-4" href="{{url("/register")}}" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Sign Up</a>
+                @endif
             </div>
         </div>
     </nav>
