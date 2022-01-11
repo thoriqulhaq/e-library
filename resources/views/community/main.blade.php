@@ -30,11 +30,15 @@
                 @if (Auth::check())
                    <div class="dropdown">
                         <a class="text text-dark text-decoration-none dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{-- {{dd(Auth::user())}} --}}
                             {{ Auth::user()->name }}
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profile</a></li>
+                            @if(Auth::user()->is_admin == true)
+                                <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a></li>
+                            @endif
                             <li><hr class="dropdown-divider"></li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
