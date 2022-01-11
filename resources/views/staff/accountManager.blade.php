@@ -25,6 +25,7 @@
             $counter = 0;
         @endphp
         @foreach ($datas as $data)
+        @if($data->id != Auth::user()->id)
         @php
             $counter++;
         @endphp
@@ -39,6 +40,7 @@
                 </a>
             </td>
           </tr>
+          @endif
         @endforeach
         </tbody>
       </table>
