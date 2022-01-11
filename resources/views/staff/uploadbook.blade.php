@@ -21,22 +21,29 @@
 
     <script>
       $(document).ready(function () {
-        
 
         $("form").submit(function (event) {
           event.preventDefault();
+          
+          // Check for edition
+          let edition = $("input[name='edition']");
+          if (isNaN(edition.val())) {
+            edition[0].setCustomValidity("This field must be a number");
+            edition[0].reportValidity();
+            edition[0].setCustomValidity("");
+            return;
+          }
+
+          // Check for ISBN
           let isbn = $("input[name='isbn']");
           let sum = 0;
           for (let i = 0; i < isbn.val().length; i++) {
             sum += (isbn.val()[i] * Math.floor(3 / ((i + 1) % 2 + 1)));
           }
-          if (sum % 10 == 0) {
-            isbn[0].setCustomValidity("");
-            isbn[0].reportValidity();
-          }
-          else {
+          if ((sum % 10 != 0) || isNaN(isbn.val())) {
             isbn[0].setCustomValidity("ISBN is invalid");
             isbn[0].reportValidity();
+            isbn[0].setCustomValidity("");
             return;
           }
           
@@ -168,40 +175,56 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-12 mb-3">
-              <label class="form-label">Book Title</label>
+              <label class="form-label">Book Title<span style="color: red;">*</span></label>
               <input class="form-control" type="text" name="title" required/>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">Genre</label>
-              <input class="form-control" type="text" name="genre">
+              <label class="form-label">Category<span style="color: red;">*</span></label>
+              <input class="form-control" list="categories" type="text" name="genre">
+              <datalist id="categories">
+                <option value="Arts"></option>
+                <option value="Biography"></option>
+                <option value="Business"></option>
+                <option value="Computer & Technology"></option>
+                <option value="Education & Reference"></option>
+                <option value="History"></option>
+                <option value="Literature & Fiction"></option>
+                <option value="Medical"></option>
+                <option value="Religion"></option>
+                <option value="Science & Mathematic"></option>
+                <option value="Social Science"></option>
+                <option value="Sports"></option>
+              </datalist>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">Publisher</label>
+              <label class="form-label">Publisher<span style="color: red;">*</span></label>
               <input class="form-control" type="text" name="publisher" required>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">Place of Publication</label>
+              <label class="form-label">Place of Publication<span style="color: red;">*</span></label>
               <input class="form-control" type="text" name="publish-place" required/>
             </div>
 
             <div class="col-md-6 mb-3">
-              <label class="form-label">Date of Publication</label>
+              <label class="form-label">Date of Publication<span style="color: red;">*</span></label>
               <div class="input-group">
                 <input class="form-control" type="date" name="publish-date" required/>
                 <i class="fas fa-calendar-alt input-group-text"></i>
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">ISBN</label>
-              <input class="form-control" type="text" name="isbn" minlength="13" maxlength="13" id="isbn" required/>
+              <label class="form-label">ISBN (ISBN-13 only)<span style="color: red;">*</span></label>
+              <input class="form-control" type="text" name="isbn" minlength="13" maxlength="13" required/>
             </div>
             <div class="col-md-6 mb-3">
               <label class="form-label">Edition</label>
               <input class="form-control" type="text" name="edition">
             </div>
             <div class="mb-3">
-              <label class="form-label">Book File</label>
+              <label class="form-label">Book File<span style="color: red;">*</span></label>
               <input class="form-control" type="file" name="book-file" accept=".pdf" maxlength="1" required>
+              <label class="form-label">Book Cover</label>
+              <input class="form-control" type="file" name="book-cover" accept="image/*" maxlength="1">
               <progress value="0" hidden></progress>
             </div>
           </div>
@@ -209,9 +232,9 @@
         <div class="col-md-6 mb-3">
           <div class="row" id="authors">
             <div class="col-md-12 mb-3">
-              <label class="form-label">Author</label>
+              <label class="form-label">Author<span style="color: red;">*</span></label>
               <div class="input-group input-group-sm">
-                <input id="author" class="form-control" type="text" name="author[]"/>
+                <input id="author" class="form-control" type="text" name="author[]" required/>
                 <i class="input-group-text material-icons" style="color: #008000; font-size: 18.5px" onclick="addAuthor()">add_box</i>
               </div>
             </div>
@@ -219,6 +242,7 @@
               <label class="form-label">Book Description</label>
               <textarea class="form-control" name="description" maxlength="500"></textarea>
               <p>0/500</p>
+              <p style="color: red;">* required</p>
             </div>
           </div>
         </div>
