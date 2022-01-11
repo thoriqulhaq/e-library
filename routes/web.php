@@ -4,6 +4,10 @@ use App\Http\Controllers\BookmarksController;
 use App\Http\Controllers\CommunityController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
+use App\Http\Controllers\AdminAccountController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\JournalController;
+use App\Http\Controllers\AcademicResourceController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,17 +23,34 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', [CommunityController::class, 'viewLandingPage']);
-Route::get('/book/1', [CommunityController::class, 'viewDetail'])->name('detail');
+Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
+
+Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
+Route::get('/bookmarks', [
+    'as' => 'bookmarks',
+    'uses' => [BookmarksController::class, 'index']
+]);
+Route::post('/bookmarks/add', [
+    'as' => 'add',
+    'uses' => [BookmarksController::class,'addBookmark']
+]);
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
+Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
+Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
+Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
-Route::get('/uploadbook', [StaffController::class, 'viewUploadBook']);
-Route::get('/editbook/{id}', [StaffController::class, 'editBook']);
-Route::post('/editbook/{id}', [StaffController::class, 'editBookP']);
-Route::post('/uploadbook', [StaffController::class, 'submitUploadBook']);
+Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
 
-Route::get('/collection', [BookmarksController::class, 'viewBookmarkPage']);
+Route::get('/search', [AcademicResourceController::class, 'search']);
+
+Route::get('/uploadbook', [BookController::class, 'viewUploadBook']);
+Route::get('/editbook/{id}', [BookController::class, 'editBook']);
+Route::post('/editbook/{id}', [BookController::class, 'editBookP']);
+Route::post('/uploadbook', [BookController::class, 'submitUploadBook']);
+
+Route::get('/bookmarks', [BookmarksController::class, 'viewBookmarkPage']);
 
 Route::get('/project-guidance', function () {
     return view('project-guidance');
@@ -37,17 +58,27 @@ Route::get('/project-guidance', function () {
 
 Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->name('download');
 
-Route::get('testDB', function () {
+Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount']);
+Route::post('/add-account', [AdminAccountController::class, 'addAdminAccount'])->name('addAccount');
+Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount');
 
-    $books = DB::table('book')->get();
+require __DIR__ . '/auth.php';
 
-    return view('community.details', ['books' => $books]);
+/*
+Route::get('/', function () {
+    return Inertia::render('Welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+        'laravelVersion' => Application::VERSION,
+        'phpVersion' => PHP_VERSION,
+    ]);
 });
 
-// Route::get('/collection', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return Inertia::render('Dashboard');
+})->name('dashboard');
+load');
 
-//     $academic_resources = DB::table('academic_resources')->get();
+require __DIR__.'/auth.php';
 
-
-//     return view('community.bookmarkList', ['academic_resources' => $academic_resources]);
-// });
+*/
