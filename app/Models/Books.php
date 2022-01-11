@@ -11,9 +11,10 @@ class Books extends Model
 
     protected $primaryKey = "academic_resources_id";
 
-    public function setAttributes($publisher, $isbn, ?int $edition) {
+    public function setAttributes($publisher, $isbn, ?int $edition, ?string $description) {
         $this->publisher = $publisher;
         $this->isbn = $isbn;
         $this->edition = $edition;
+        $this->description = $description;
     }
 }
