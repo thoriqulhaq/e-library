@@ -8,7 +8,7 @@
             <p class="my-auto me-3">Add Admin Account</p>
             <ion-icon style="font-size: 24px" name="person-add"></ion-icon>
         </a>
-    </div>
+    </div> 
 
     <table class="table">
         <thead>

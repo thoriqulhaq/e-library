@@ -6,6 +6,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\AcademicResourceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -27,7 +28,14 @@ Route::get('/', [CommunityController::class, 'viewLandingPage'])->name('index');
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
-Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
+Route::get('/bookmarks', [
+    'as' => 'bookmarks',
+    'uses' => [BookmarksController::class, 'index']
+]);
+Route::post('/bookmarks/add', [
+    'as' => 'add',
+    'uses' => [BookmarksController::class,'addBookmark']
+]);
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 Route::get('/home', [CommunityController::class, 'authRedirect']);
@@ -42,6 +50,8 @@ Route::get('logouts', function (Request $request) {
 
     return redirect()->route('index');
 })->name('logouts');
+Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
+Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage']);
