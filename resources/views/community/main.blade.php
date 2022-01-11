@@ -39,6 +39,7 @@
                             @if(Auth::user()->is_admin == true)
                                 <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a></li>
                             @endif
+                            <li><a class="dropdown-item" href="{{ url('/bookmarks') }}">Bookmarks</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
