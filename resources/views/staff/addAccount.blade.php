@@ -1,5 +1,5 @@
 
-@extends('community.main')
+@extends('staff.main')
 @section('title', 'add-account')
 @section('page')
 
@@ -17,6 +17,7 @@
                     <label for="name" class="sr-only">Name</label>
                     <input type="name" name="name" id="name" class="form-control" placeholder="Name" required>
                   </div>
+                  <br>
                   <div class="form-group">
                     <label for="email" class="sr-only">Email</label>
                     <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
@@ -98,4 +99,4 @@
 
   
 
-@endsection   
+@endsection  

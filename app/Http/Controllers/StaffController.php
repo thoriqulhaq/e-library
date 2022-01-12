@@ -37,7 +37,7 @@ class StaffController extends Controller
 
         return view('staff.accountManager', [
             'datas' => $sc,
-            'page' => 2
+            'page' => 3
         ]);
     }
 
@@ -64,7 +64,7 @@ class StaffController extends Controller
 
         return view('staff.contentManager', [
             'datas' => $sc,
-            'page' => 3
+            'page' => 2
         ]);
     }
 
