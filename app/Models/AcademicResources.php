@@ -39,8 +39,14 @@ class AcademicResources extends Model
         $this->genre = $genre;
         $this->publication_place = $pplace;
         $this->publication_date = $pdate;
+        if (!isset($path)) {
+            $path = $this->file_path;
+        }
         $this->file_path = $path;
 
+        if (!isset($cpath)) {
+            $cpath = $this->cover_path;
+        }
         $this->cover_path = $cpath;
     }
 
