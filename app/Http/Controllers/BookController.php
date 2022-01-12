@@ -30,7 +30,7 @@ class BookController extends Controller
             "book-file" => ["required", "file"],
             "book-cover" => ["nullable", "file"],
             "description" => ["nullable", "max:500"],
-            "author[]" => ["required", "array", "max:5"],
+            "author" => ["required", "array", "max:5"],
             "isbn" => ["required", "numeric", new Isbn]
         ]);
 
@@ -58,11 +58,12 @@ class BookController extends Controller
 
         }
         $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), $fpath, $cpath);
+        $acadres->description = $request->description;
         $acadres->type = 1;
         $acadres->download_count = 0;
         $acadres->save();
 
-        $book->setAttributes($request->publisher, $request->isbn, $request->edition, $request->description);
+        $book->setAttributes($request->publisher, $request->isbn, $request->edition);
         $acadres->details()->save($book);
 
 
@@ -109,29 +110,36 @@ class BookController extends Controller
             "genre" => ["nullable", "max:255"],
             "edition" => ["numeric", "nullable"],
             "description" => ["nullable", "max:500"],
-            "author[]" => ["required", "array", "max:5"],
+            "author" => ["required", "array", "max:5"],
             "isbn" => ["required", "numeric", new Isbn]
         ]);
         if ($validator->fails() || ($acadres->type != 1)) {
+            $msg = "";
+            foreach ($validator->errors()->all() as $error) {
+                $msg .= $error . "\n";
+            }
             return response("Request validation failed, this should not happen since this error is not coming from our server.
-            Please refresh the page and try again", 400);
+            Please refresh the page and try again\n" . $msg, 400);
         }
 
         $validated = $validator->validated();
 
         // Check if ISBN if already used, if it is, return a 200 OK response, but resource is not created
         if (($b = Books::where("isbn", $validated["isbn"])->first()) != null) {
-            $ar = AcademicResources::where("id", $b->academic_resources_id)->first();
-            return response("This ISBN number has already registered to another book\n
-            <a href='" . url("book/" . $ar->id) . "'>" . $ar->title . "</a>");
+            if ($acadres->id != $b->academic_resources_id) {
+                $ar = AcademicResources::where("id", $b->academic_resources_id)->first();
+                return response("This ISBN number has already registered to another book\n
+                <a href='" . url("book/" . $ar->id) . "'>" . $ar->title . "</a>");
+            }
         }
 
-        $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"));
+        $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), null, null);
+        $acadres->description = $request->description;
 
         $acadres->save();
 
         $book = $acadres->details;
-        $book->setAttributes($request->publisher, $request->isbn, $request->edition, $request->description);
+        $book->setAttributes($request->publisher, $request->isbn, $request->edition);
         $acadres->details()->save($book);
 
         // Detach all the authors, simpler than just checking which author disappear
