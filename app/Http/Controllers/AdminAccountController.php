@@ -19,7 +19,11 @@ class AdminAccountController extends Controller
 {
     public function viewAdminAccount(Request $request)
     {
-        return view('staff.addAccount');
+        $sc = [];
+        return view('staff.addAccount', [
+            'datas' => $sc,
+            'page' => 4
+        ]);
     }
 
 
