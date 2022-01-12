@@ -41,12 +41,29 @@ class StaffController extends Controller
         ]);
     }
 
-    public function viewContentManager()
+    public function viewContentManager(Request $request)
     {
-        $datas = DB::table('academic_resources')->get();
+        $ac = AcademicResources::all();
+
+        $sc = [];
+
+        $pattern = $request->title;
+        $pattern = "/" . $pattern . "/i";
+        $apattern = $request->author;
+        $apattern = "/" . $apattern . "/i";
+        foreach ($ac as $acadres) {
+            if (preg_match($pattern, $acadres->title)) {
+                foreach ($acadres->authors as $author) {
+                    if (preg_match($apattern, $author)) {
+                        array_push($sc, $acadres);
+                        break;
+                    }
+                }
+            }
+        }
 
         return view('staff.contentManager', [
-            'datas' => $datas,
+            'datas' => $sc,
             'page' => 3
         ]);
     }
