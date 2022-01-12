@@ -17,7 +17,7 @@ class DownloadFileController extends Controller
     {
 
 
-        $filePath = 'books/' . $request->File_Upload;
+        $filePath = $request->File_Upload;
 
         $headers = [
             'Content-Type' => 'application/pdf',
