@@ -60,8 +60,8 @@ Route::get('/content-manager', [StaffController::class, 'viewContentManager'])->
 
 Route::get('/search', [AcademicResourceController::class, 'search']);
 
-Route::get('/uploadbook', [BookController::class, 'viewUploadBook'])->middleware("auth");
-Route::get('/editbook/{id}', [BookController::class, 'editBook'])->middleware("auth");
+Route::get('/uploadbook', [BookController::class, 'viewUploadBook'])->middleware('can:access-as-staff');
+Route::get('/editbook/{id}', [BookController::class, 'editBook'])->middleware('can:access-as-staff');
 Route::post('/editbook/{id}', [BookController::class, 'editBookP']);
 Route::post('/uploadbook', [BookController::class, 'submitUploadBook']);
 
