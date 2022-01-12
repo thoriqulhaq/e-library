@@ -18,7 +18,8 @@
                       <tr>
                       <td style="width:33.3%">
                         <a href="{{url('/book/' . $datas->id)}}">  
-                          <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/Cover/{{$academicResource->cover_path}}"  width="160" height="200"  alt="...">
+                         
+                          <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/Cover/{{$datas->cover_path}}"  width="160" height="200"  alt="...">
                           
                         </a> 
                        
