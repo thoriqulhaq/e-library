@@ -6,6 +6,7 @@ use App\Http\Controllers\StaffController;
 use App\Http\Controllers\DownloadFileController;
 use App\Http\Controllers\AdminAccountController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\JournalController;
 use App\Http\Controllers\AcademicResourceController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
@@ -27,7 +28,14 @@ Route::get('/', [CommunityController::class, 'viewLandingPage'])->name('index');
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
-Route::get('/set-bookmark/{id}', [BookmarksController::class, 'setBookmark'])->name('set-bookmark');
+Route::get('/bookmarks', [
+    'as' => 'bookmarks',
+    'uses' => [BookmarksController::class, 'index']
+]);
+Route::post('/bookmarks/add', [
+    'as' => 'add',
+    'uses' => [BookmarksController::class,'addBookmark']
+]);
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 Route::get('/home', [CommunityController::class, 'authRedirect']);
@@ -42,16 +50,18 @@ Route::get('logouts', function (Request $request) {
 
     return redirect()->route('index');
 })->name('logouts');
+Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
+Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
 
 
-Route::get('/admin', [StaffController::class, 'viewLandingPage']);
-Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
-Route::get('/content-manager', [StaffController::class, 'viewContentManager']);
+Route::get('/admin', [StaffController::class, 'viewLandingPage'])->middleware('can:access-as-staff');
+Route::get('/account-manager', [StaffController::class, 'viewAccountManager'])->middleware('can:access-as-staff');
+Route::get('/content-manager', [StaffController::class, 'viewContentManager'])->middleware('can:access-as-staff');
 
 Route::get('/search', [AcademicResourceController::class, 'search']);
 
-Route::get('/uploadbook', [BookController::class, 'viewUploadBook']);
-Route::get('/editbook/{id}', [BookController::class, 'editBook']);
+Route::get('/uploadbook', [BookController::class, 'viewUploadBook'])->middleware('can:access-as-staff');
+Route::get('/editbook/{id}', [BookController::class, 'editBook'])->middleware('can:access-as-staff');
 Route::post('/editbook/{id}', [BookController::class, 'editBookP']);
 Route::post('/uploadbook', [BookController::class, 'submitUploadBook']);
 
@@ -63,10 +73,10 @@ Route::get('/project-guidance', function () {
 
 Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->name('download');
 
-Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount']);
+Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount'])->middleware('can:access-as-staff');
 Route::post('/add-account', [AdminAccountController::class, 'addAdminAccount'])->name('addAccount');
-Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount');
-Route::get('/delete-content/{id}', [StaffController::class, 'deleteContent'])->name('deleteContent');
+Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount')->middleware('can:access-as-staff');
+Route::get('/delete-content/{id}', [StaffController::class, 'deleteContent'])->name('deleteContent')->middleware('can:access-as-staff');
 require __DIR__ . '/auth.php';
 
 /*

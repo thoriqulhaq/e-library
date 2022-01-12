@@ -8,13 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Journals extends Model
 {
     use HasFactory;
+    protected $primaryKey = "academic_resources_id";
 
-    protected $atrributes = [
-        "volume",
-        "issue"
-    ];
 
-    public function info() {
-        return [$this->volume, $this->issue];
+    public function setAttributes($volume, $issue) {
+        $this->volume = $volume;
+        $this->issue = $issue;
     }
+
 }
