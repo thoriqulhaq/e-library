@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
-    <title>Upload Journal</title>
-
-    
-  </head> 
-  <body>
-    @extends('community.main') 
-    @section('title', 'Upload New Journal')
+@extends('community.main') 
+    @section('title', 'Edit Journal')
     @section('page')
-    
-    
 
-    <br>
+<br>
     <div class="container" style=" height: 100vh; padding:100px" >
-    <h1>Upload Your Journal</h1>
+    <h1>Update Your Journal</h1>
       
       <ul class="nav nav-tabs mb-3">
           <li class="nav-item">
@@ -33,34 +18,36 @@
         </ul>
         <br>
 
-        <form action="{{ url('/uploadjournal') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ url('/editjournal/' . $id) }}" method="post" enctype="multipart/form-data">
           @csrf
           <div class="tab-content">
             <div class="tab-pane fade show active" id="submit" ><!-- isi upload taruh didalam ini-->
               <div class="row">
+                @foreach($authors as $author)
                 <h>Name of Author<h>
-                <input type="text" class="form-control" name="author[]" id="name" required/>
+                <input type="text" class="form-control" name="author[]" id="name" required value="{{$author->name}}"/>
+                @endforeach
                 <h>Title</h>
-                <input type="text" class="form-control" name="title"  id="title" required/>
+                <input type="text" class="form-control" name="title"  id="title" required value="{{$journal->title}}"/>
                 <h>Genre</h>
-                <input type="text" class="form-control" name="genre"  id="genre" />
+                <input type="text" class="form-control" name="genre"  id="genre" value="{{$journal->genre}}"/>
                 <h>Place of Publication</h>
-                <input type="text" class="form-control" name="publish-place"  id="date" required/>
+                <input type="text" class="form-control" name="publish-place"  id="date" required value="{{$journal->publication_place}}" />
                 <h>Date of Publication</h>
-                <input type="date" class="form-control" name="publish-date"  id="place" required/>
+                <input type="date" class="form-control" name="publish-date"  id="place" required value="{{$journal->publication_date}}"/>
+                <h>Type Number</h>
+                <input type="number" class="form-control" name="type" id="type" value="{{$journal->type}}"/>
                 <h>Volume Number</h>
-                <input type="number" class="form-control" name="volume"  id="volume" required/>
+                <input type="number" class="form-control" name="volume"  id="volume" value="{{$journalDetails->volume}}" />
                 <h>Issue Number</h>
-                <input type="number" class="form-control" name="issue"id="issue" required/>
+                <input type="number" class="form-control" name="issue"id="issue" value="{{$journalDetails->issue}}"/>
               </div>
               
               <div class="my-4"> <!-- ini margin y atau margin top dan margin bottom -->
                 <input class="form-control" type="file" name="journal-file" accept=".pdf" maxlength="1">
-                
-                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
                 <br>
               </div>
-        
+         
                 
               <div class="row">
                 <div class="col">
@@ -71,10 +58,10 @@
                 </div>
               </div>
             </div>
-            
           <div class="tab-pane fade" id="about"><!-- isi about taruh didalam ini-->
             <div class="row" id="ab1">
-              <textarea class="form control" name="description" maxlength="500" placeholder="Description..." id="msg"></textarea>
+            <label class="form-label">Journal Description</label>
+              <textarea class="form control" name="description" maxlength="500" placeholder="Description..." value="{{$journal->description}}"></textarea>
               <p>0/500</p>
             </div>
           </div>
@@ -94,7 +81,3 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js" class="jsbin"></script>
     <script src="tester.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-  </body>
-  
-  
-</html>

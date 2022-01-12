@@ -14,7 +14,7 @@ use App\Rules\Isbn;
 Separate controller for each model
 Controller for Book Model
 */
-
+ 
 class BookController extends Controller
 {
     public function submitUploadBook(Request $request)
@@ -162,7 +162,7 @@ class BookController extends Controller
                     $author->save();
                 }
                 $acadres->authors()->attach($name);
-            }
+            } 
         }
 
         return response("Book information has been updated successfully");

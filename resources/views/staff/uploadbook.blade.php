@@ -230,7 +230,7 @@
           </div>
         </div>
         <div class="col-md-6 mb-3">
-          <div class="row" id="authors">
+          <div class="row" id="authors"> 
             <div class="col-md-12 mb-3">
               <label class="form-label">Author<span style="color: red;">*</span></label>
               <div class="input-group input-group-sm">

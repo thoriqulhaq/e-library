@@ -19,7 +19,7 @@ class JournalController extends Controller
 
         $fpath = $request->file("journal-file")->store("journals");
         $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), $fpath, "");
-        $acadres->type = 1;
+        $acadres->type = 0;
         $acadres->save();
 
         $journal->setAttributes($request->volume, $request->issue);
@@ -43,12 +43,12 @@ class JournalController extends Controller
 
     public function saveJournalInfo(Request $request, AcademicResources $acadres, Journals $journal)
     {
-        $acadres->title = $request->title;
+        $acadres->title = $request->title; 
         $acadres->description = $request->description;
         $acadres->genre = $request->genre;
         $acadres->publication_place = $request->input("publish-place");
         $acadres->publication_date = $request->input("publish-date");
-        $acadres->type = 1;
+        $acadres->type = 0;
         if ($request->file("journal-file") != null) {
             $acadres->file_path = $request->file("journal-file")->store("journals");
         }
@@ -58,8 +58,33 @@ class JournalController extends Controller
         
         $journal->volume = $request->volume;
         $journal->issue = $request->issue;
-        $journal->issue = $request->issue;
+            $acadres->details()->save($journal);
+    }
+
+    public function editJournal(Request $request, $id)
+    {
+        $journal = AcademicResources::where("id", $id)->first();
+
+        if ($journal == null) {
+            abort(404);
+        }
+
+        return view("community.editjournal", [
+            "journal" => $journal, "authors" => $journal->authors, "journalDetails" => $journal->details, "id" => $id
+        ]);
+    }
+
+    public function editJournalP(Request $request, $id)
+    {
+        $acadres = AcademicResources::where("id", $id)->first();
+
+        $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), "", "", 0);
+        $acadres->save();
+
+        $journal = $acadres->details;
+        $journal->setAttributes ($request->volume, $request->issue);
         $acadres->details()->save($journal);
+
     }
 
 
