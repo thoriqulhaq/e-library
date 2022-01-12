@@ -24,17 +24,21 @@
     -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
         <div class="container-fluid ps-4 pe-4">
             <a class="navbar-brand p-0" href="/">
-                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="70" width="190" style="object-fit: cover;">
+                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="90" width="210" style="object-fit: cover;">
             </a>
             <div>
                 @if (Auth::check())
                    <div class="dropdown">
                         <a class="text text-dark text-decoration-none dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                            {{-- {{dd(Auth::user())}} --}}
                             {{ Auth::user()->name }}
                         </a>
 
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profile</a></li>
+                            @if(Auth::user()->is_admin == true)
+                                <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a></li>
+                            @endif
                             <li><hr class="dropdown-divider"></li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf

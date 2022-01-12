@@ -12,7 +12,7 @@
             <input type="submit" value="Search">
         </form>
         <a href="{{url('/uploadbook')}}" type="button" class="btn d-flex bg-success text-white" data-toggle="tooltip" data-original-title="Delete">
-            <p class="my-auto me-3">Add Book</p>
+            <p class="my-auto me-3">Add Academic Resource</p>
             <ion-icon style="font-size: 24px" name="book"></ion-icon>
         </a>
     </div>
@@ -24,6 +24,7 @@
             <th scope="col">Cover</th>
             <th scope="col">Title</th>
             <th scope="col">Genre</th>
+            <th scope="col"></th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -49,6 +50,11 @@
                     <ion-icon style="font-size: 16px" name="create-outline"></ion-icon>
                 </a>
             </td> 
+            <td>
+                <a href="{{url('/delete-content/' . $academicResource->id)}}" type="button" class="btn p-0" data-toggle="tooltip" data-original-title="Delete">
+                    <ion-icon style="font-size: 16px" name="trash"></ion-icon>
+                </a>
+            </td>
           </tr>
         @endforeach
         </tbody>

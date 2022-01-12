@@ -19,7 +19,7 @@ class CreateAcademicResourcesPublicUsersTable extends Migration
             $table->unsignedBigInteger("user_id");
 
 
-            $table->foreign("academic_resources_id")->references("id")->on("academic_resources");
+            $table->foreign("academic_resources_id")->references("id")->on("academic_resources")->onDelete('cascade');
             $table->foreign("user_id")->references("user_id")->on("public_users");
 
             $table->primary(["academic_resources_id", "user_id"], "PK_Key_academic_resources_public_users");

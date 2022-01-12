@@ -36,7 +36,7 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'nim' => ['required'],
+            'id_number' => ['required', 'unique:public_users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
@@ -48,7 +48,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $dt = new PublicUser();
-        $dt->id_number = $request->nim;
+        $dt->id_number = $request->id_number;
 
         $user->details()->save($dt);
 

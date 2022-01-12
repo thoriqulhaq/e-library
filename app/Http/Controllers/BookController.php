@@ -82,7 +82,7 @@ class BookController extends Controller
         }
 
         return response("Success", 201)
-        ->header("Location", url("book/" . $acadres->id));
+            ->header("Location", url("book/" . $acadres->id));
     }
 
     public function editBook(Request $request, $id)
