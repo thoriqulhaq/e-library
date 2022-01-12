@@ -159,6 +159,7 @@
               <input class="form-control" type="text" name="title" placeholder="Title" required value="{{ $book->title }}"/>
             </div>
             <div class="col-md-6 mb-3">
+
               <label class="form-label">Category</label>
               <input class="form-control" type="text" list="categories" name="genre" value="{{ $book->genre }}">
               <datalist id="categories">
@@ -220,7 +221,7 @@
                 <input class="form-control" type="text" name="author[]" value="{{ $author->name }}" required/>
                 <i class="input-group-text material-icons" style="color: red; font-size: 18.5px" onclick="deleteAuthor(this)">delete</i>
                 @endif
-              </div>
+              </div> 
             </div>
             @php
               $counter++;

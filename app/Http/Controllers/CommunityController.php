@@ -22,7 +22,7 @@ class CommunityController extends Controller
         $ac = AcademicResources::all();
 
         $sc = [];
-
+ 
         $pattern = $request->title;
         $pattern = "/" . $pattern . "/i";
         $apattern = $request->author;
