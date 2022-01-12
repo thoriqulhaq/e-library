@@ -12,7 +12,7 @@
                 -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
                 -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
                     <div class="col col-sm-4">
-                        <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/Cover/{{$academicResource->cover_path}}" class="card-img-top" alt="...">
+                        <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$academicResource->cover_path}}" class="card-img-top" alt="...">
                     </div>
                     <div class="col text-start m-4 " style="color: #212529">
                         <div class="row">
