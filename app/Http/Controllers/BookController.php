@@ -52,11 +52,14 @@ class BookController extends Controller
         $acadres = new AcademicResources();
         $book = new Books();
 
-        $fpath = $validated["book-file"]->store("cover");
-        $cpath = $validated["book-cover"]->store("books");
-        if ($cpath == null) {
-
+        $fpath = $validated["book-file"]->store("books");
+        if ($validated["book-cover"] != null) {
+            $cpath = $validated["book-cover"]->store("cover");
         }
+        else {
+            $cpath = null;
+        }
+
         $acadres->setAttributes($request->title, $request->genre, $request->input("publish-place"), $request->input("publish-date"), $fpath, $cpath);
         $acadres->description = $request->description;
         $acadres->type = 1;
