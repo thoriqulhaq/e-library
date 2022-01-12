@@ -28,15 +28,15 @@ Route::get('/', [CommunityController::class, 'viewLandingPage'])->name('index');
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
-Route::get('/add-bookmark/{id}',[BookmarksController::class, 'addBookmark'])->name('add-bookmark');
-Route::get('/bookmarks', [
-    'as' => 'bookmarks',
-    'uses' => [BookmarksController::class, 'index']
-]);
-Route::post('/bookmarks/add', [
-    'as' => 'add',
-    'uses' => [BookmarksController::class,'addBookmark']
-]);
+Route::get('/add-bookmark/{id}', [BookmarksController::class, 'addBookmark'])->name('add-bookmark');
+// Route::get('/bookmarks', [
+//     'as' => 'bookmarks',
+//     'uses' => [BookmarksController::class, 'index']
+// ]);
+// Route::post('/bookmarks/add', [
+//     'as' => 'add',
+//     'uses' => [BookmarksController::class,'addBookmark']
+// ]);
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 Route::get('/home', [CommunityController::class, 'authRedirect']);
@@ -51,10 +51,10 @@ Route::get('logouts', function (Request $request) {
 
     return redirect()->route('index');
 })->name('logouts');
-Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
-Route::get('/editjournal/{id}',[JournalController::class,'editJournal']);
-Route::post('/editjournal/{id}',[JournalController::class, 'editJournalP']);
-Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
+Route::get('/uploadjournal', [JournalController::class, 'viewUploadJournal']);
+Route::get('/editjournal/{id}', [JournalController::class, 'editJournal']);
+Route::post('/editjournal/{id}', [JournalController::class, 'editJournalP']);
+Route::post('/uploadjournal', [JournalController::class, 'submitUploadJournal']);
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage'])->middleware('can:access-as-staff');
