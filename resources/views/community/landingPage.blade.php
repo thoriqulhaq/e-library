@@ -73,7 +73,7 @@
                     <div class="d-flex flex-wrap justify-content-center">
                         @foreach ( $academicResource as $data )
                         <div class="card m-2 bg-light" style="width: 15rem;">
-                            <img src="{{$data->cover_path ?? ""}}" class="card-img-top" alt="...">
+                            <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$data->cover_path}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <a href="{{url('/book/' . $data->id)}}" class="text-decoration-none text-reset">
                                     <h5 class="card-title">{{$data->title}}</h5>
@@ -94,7 +94,7 @@
                     <div class="d-flex flex-wrap justify-content-center">
                         @foreach ( $academicResourceSortByDownload as $data )
                         <div class="card m-2 bg-light" style="width: 15rem;">
-                            <img src="{{$data->cover_path ?? ""}}" class="card-img-top" alt="...">
+                            <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$data->cover_path}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <a href="{{url('/book/' . $data->id)}}" class="text-decoration-none text-reset">
                                     <h5 class="card-title">{{$data->title}}</h5>
