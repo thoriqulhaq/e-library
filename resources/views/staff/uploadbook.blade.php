@@ -146,7 +146,7 @@
         // First input field has "label" tag, if will be deleted, put new label on second field before deletion
         if (currentElement.has("label").length) {
           currentElement.next().removeClass("mt-2")
-          .prepend("<label class='form-label'>Author</label>");
+          .prepend("<label class=\"form-label\">Author<span style=\"color: red;\">*</span></label>");
         }
 
         currentElement.remove();
@@ -179,7 +179,7 @@
               <input class="form-control" type="text" name="title" required/>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">Category<span style="color: red;">*</span></label>
+              <label class="form-label">Category</label>
               <input class="form-control" list="categories" type="text" name="genre">
               <datalist id="categories">
                 <option value="Arts"></option>
