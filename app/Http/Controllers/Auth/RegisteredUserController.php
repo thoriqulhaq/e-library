@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\PublicUser;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
@@ -35,17 +36,21 @@ class RegisteredUserController extends Controller
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'nim' => ['required'],
+            'id_number' => ['required', 'unique:public_users'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
-            'nim' => $request->nim,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
+
+        $dt = new PublicUser();
+        $dt->id_number = $request->id_number;
+
+        $user->details()->save($dt);
 
         event(new Registered($user));
 

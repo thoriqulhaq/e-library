@@ -5,6 +5,10 @@ namespace App\Providers;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 
+use App\Models\Books;
+use App\Policies\BookPolicy;
+use App\Models\User;
+
 class AuthServiceProvider extends ServiceProvider
 {
     /**
@@ -13,7 +17,7 @@ class AuthServiceProvider extends ServiceProvider
      * @var array
      */
     protected $policies = [
-        // 'App\Models\Model' => 'App\Policies\ModelPolicy',
+        Books::class => BookPolicy::class
     ];
 
     /**
@@ -26,5 +30,8 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         //
+        Gate::define("access-as-staff", function (User $user) {
+            return $user->is_admin;
+        });
     }
 }

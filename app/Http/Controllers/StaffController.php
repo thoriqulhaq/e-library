@@ -9,6 +9,8 @@ use App\Models\Books;
 use App\Models\Author;
 use DB;
 
+use App\Models\User;
+
 class StaffController extends Controller
 {
     public function viewLandingPage()
@@ -18,21 +20,59 @@ class StaffController extends Controller
         ]);
     }
 
-    public function viewAccountManager()
+    public function viewAccountManager(Request $request)
     {
-        $datas = DB::table('users')->get();
+        $usr = User::all();
+
+        $sc = [];
+
+        $pattern = $request->name;
+        $pattern = "/" . $pattern . "/i";
+        foreach ($usr as $u) {
+            $str = $request->is_email == "on" ? $u->email : $u->name;
+            if (preg_match($pattern, $str)) {
+                array_push($sc, $u);
+            }
+        }
 
         return view('staff.accountManager', [
-            'datas' => $datas,
-            'page' => 2
+            'datas' => $sc,
+            'page' => 3
         ]);
     }
 
+    public function viewContentManager(Request $request)
+    {
+        $ac = AcademicResources::all();
+
+        $sc = [];
+
+        $pattern = $request->title;
+        $pattern = "/" . $pattern . "/i";
+        $apattern = $request->author;
+        $apattern = "/" . $apattern . "/i";
+        foreach ($ac as $acadres) {
+            if (preg_match($pattern, $acadres->title)) {
+                foreach ($acadres->authors as $author) {
+                    if (preg_match($apattern, $author)) {
+                        array_push($sc, $acadres);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return view('staff.contentManager', [
+            'datas' => $sc,
+            'page' => 2
+        ]);
+    }
 
     public function viewUploadBook()
     {
         return view('staff.uploadbook');
     }
+
 
     public function saveBookInfo(Request $request, AcademicResources $acadres, Books $book)
     {
@@ -96,5 +136,11 @@ class StaffController extends Controller
         $acadres = AcademicResources::where("id", $id)->first();
 
         $this->saveBookInfo($request, $acadres, $acadres->details);
+    }
+
+    public function deleteContent($id)
+    {
+        $data = DB::table('academic_resources')->where('id', '=', $id)->delete();
+        return back();
     }
 }

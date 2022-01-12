@@ -64,12 +64,26 @@ class User extends Authenticatable
         'profile_photo_url',
     ];
 
-    public function details() {
+    public function id_number()
+    {
+        if ($this->is_admin) {
+            return null;
+        }
+
+        return $this->details->id_number;
+    }
+
+    public function details()
+    {
         if ($this->is_admin) {
             return $this->hasOne(Staff::class);
-        }
-        else {
+        } else {
             return $this->hasOne(PublicUser::class);
         }
+    }
+
+    public function public_user()
+    {
+        return $this->hasOne(PublicUser::class, 'user_id', 'id');
     }
 }

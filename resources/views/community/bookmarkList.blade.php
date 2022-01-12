@@ -16,14 +16,21 @@
                     <tbody>
                       @foreach ($academicResource as $datas)
                       <tr>
-                        <td style="width:33.3%">picture
-                          <a href="{{url('/book/' . $datas->id)}}">  
-                            <img src="https://covers.zlibcdn2.com/covers299/books/83/8c/c6/838cc6ac8cb0d8ddb98fdb1ae0c8a443.jpg"  width="160" height="200"  alt="...">
-                          </a> 
-                          pciture
-                        </td>
-                        <td style="width:33.3%">title
-                          <a  class="text-decoration-none" href="{{url('/book/' . $datas->id)}}" style="color: inherit"> {{$datas->title}} </a>
+                                            <td style="width:33.3%">
+                        <a href="{{url('/book/' . $datas->id)}}">  
+                         
+                          <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/Cover/{{$datas->cover_path}}"  width="160" height="200"  alt="...">
+                          
+                        </a> 
+                       
+                        
+                          
+                      
+                      </td>
+                        <td style="width:33.3%">
+                          
+                       <a  class="text-decoration-none" href="{{url('/book/' . $datas->id)}}" style="color: inherit"> {{$datas->title}} </a>
+
                         </td>
                         <td style="width:33.3%">
                            <a  href="{{url('/delete-bookmark/' . $datas->id)}}" type="button" class="btn"data-toggle="tooltip" data-original-title="Delete">

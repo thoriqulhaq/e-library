@@ -18,12 +18,13 @@
 
                 <x-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
             </div>
+            <br>
 
-            <!-- NIM -->
+            <!-- ID Number -->
             <div>
-                <x-label for="nim" :value="__('Nim')" />
+                <x-label for="id_number" :value="__('ID Number')" />
 
-                <x-input id="nim" class="block mt-1 w-full" type="text" name="nim" :value="old('nim')" required autofocus />
+                <x-input id="id_number" class="block mt-1 w-full" type="text" name="id_number" :value="old('id_number')" required autofocus />
             </div>
 
             <!-- Email Address -->

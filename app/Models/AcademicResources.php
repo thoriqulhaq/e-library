@@ -23,7 +23,8 @@ class AcademicResources extends Model
         return $this->belongsToMany(Author::class, null, null, "author_name");
     }
 
-    public function addAuthor($name) {
+    public function addAuthor($name)
+    {
         $author = Author::where("name", $name)->first();
         if ($author == null) {
             $author = new Author();
@@ -33,21 +34,27 @@ class AcademicResources extends Model
         $this->authors()->attach($name);
     }
 
-    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path, ?string $cpath, $dcount = 0) {
+    public function setAttributes($title, $genre, $pplace, $pdate, ?string $path, ?string $cpath)
+    {
 
         $this->title = $title;
         $this->genre = $genre;
         $this->publication_place = $pplace;
         $this->publication_date = $pdate;
+        if (!isset($path)) {
+            $path = $this->file_path;
+        }
         $this->file_path = $path;
 
-        $this->download_count = $dcount;
+        if (!isset($cpath)) {
+            $cpath = $this->cover_path;
+        }
         $this->cover_path = $cpath;
     }
 
 
     public function UserBookmarks()
     {
-        return $this->belongsTo(PublicUser::class);
+        return $this->belongsTo(PublicUser::class, User::class);
     }
 }
