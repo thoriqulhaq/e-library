@@ -12,7 +12,7 @@ use App\Models\Author;
 Separate controller for each model
 Controller for Book Model
 */
-
+ 
 class BookController extends Controller
 {
     public function submitUploadBook(Request $request)
@@ -105,7 +105,7 @@ class BookController extends Controller
                     $author->save();
                 }
                 $acadres->authors()->attach($name);
-            }
+            } 
         }
     }
 

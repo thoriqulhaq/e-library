@@ -44,7 +44,7 @@
             <div class="col-md-6 mb-3">
               <label class="form-label">Genre</label>
               <input class="form-control" type="text" name="genre" value="{{ $book->genre }}">
-            </div>
+            </div> 
             <div class="col-md-6 mb-3">
               <label class="form-label">Publisher</label>
               <input class="form-control" type="text" name="publisher" required value="{{ $bookDetails->publisher }}">
@@ -89,7 +89,7 @@
                 <input class="form-control" type="text" name="author[]" value="{{ $author->name }}"/>
                 <i class="input-group-text material-icons" style="color: red; font-size: 18.5px" onclick="deleteAuthor(this)">delete</i>
                 @endif
-              </div>
+              </div> 
             </div>
             @php
               $counter++;
