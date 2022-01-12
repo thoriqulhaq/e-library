@@ -54,14 +54,14 @@ Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
 Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
 
 
-Route::get('/admin', [StaffController::class, 'viewLandingPage']);
-Route::get('/account-manager', [StaffController::class, 'viewAccountManager']);
-Route::get('/content-manager', [StaffController::class, 'viewContentManager']);
+Route::get('/admin', [StaffController::class, 'viewLandingPage'])->middleware('can:access-as-staff');
+Route::get('/account-manager', [StaffController::class, 'viewAccountManager'])->middleware('can:access-as-staff');
+Route::get('/content-manager', [StaffController::class, 'viewContentManager'])->middleware('can:access-as-staff');
 
 Route::get('/search', [AcademicResourceController::class, 'search']);
 
-Route::get('/uploadbook', [BookController::class, 'viewUploadBook']);
-Route::get('/editbook/{id}', [BookController::class, 'editBook']);
+Route::get('/uploadbook', [BookController::class, 'viewUploadBook'])->middleware("auth");
+Route::get('/editbook/{id}', [BookController::class, 'editBook'])->middleware("auth");
 Route::post('/editbook/{id}', [BookController::class, 'editBookP']);
 Route::post('/uploadbook', [BookController::class, 'submitUploadBook']);
 
@@ -73,10 +73,10 @@ Route::get('/project-guidance', function () {
 
 Route::get('downloadfile', [DownloadFileController::class, 'downloadFile'])->name('download');
 
-Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount']);
+Route::get('/add-account', [AdminAccountController::class, 'viewAdminAccount'])->middleware('can:access-as-staff');
 Route::post('/add-account', [AdminAccountController::class, 'addAdminAccount'])->name('addAccount');
-Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount');
-Route::get('/delete-content/{id}', [StaffController::class, 'deleteContent'])->name('deleteContent');
+Route::get('/delete-account/{id}', [AdminAccountController::class, 'deleteAdminAccount'])->name('deleteAccount')->middleware('can:access-as-staff');
+Route::get('/delete-content/{id}', [StaffController::class, 'deleteContent'])->name('deleteContent')->middleware('can:access-as-staff');
 require __DIR__ . '/auth.php';
 
 /*
