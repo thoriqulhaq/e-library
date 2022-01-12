@@ -15,4 +15,5 @@ class Journals extends Model
         $this->issue = $issue;
     }
 
+
 }

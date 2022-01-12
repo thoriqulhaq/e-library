@@ -49,11 +49,9 @@
                 <h>Date of Publication</h>
                 <input type="date" class="form-control" name="publish-date"  id="place" required/>
                 <h>Volume Number</h>
-                <input type="number" class="form-control" name="volume"  id="volume"/>
+                <input type="number" class="form-control" name="volume"  id="volume" required/>
                 <h>Issue Number</h>
-                <input type="number" class="form-control" name="issue"id="issue"/>
-                <h>Type Number</h>
-                <input type="number" class="form-control" name="type" id="type"/>
+                <input type="number" class="form-control" name="issue"id="issue" required/>
               </div>
               
               <div class="my-4"> <!-- ini margin y atau margin top dan margin bottom -->
@@ -81,9 +79,10 @@
             </div>
           </div>
         </form>
+        @endsection
        
       </div>
-      @endsection
+      
 
     </div>
     
@@ -96,5 +95,6 @@
     <script src="tester.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
   </body>
+  
   
 </html>

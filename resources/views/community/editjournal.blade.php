@@ -23,8 +23,10 @@
           <div class="tab-content">
             <div class="tab-pane fade show active" id="submit" ><!-- isi upload taruh didalam ini-->
               <div class="row">
+                @foreach($authors as $author)
                 <h>Name of Author<h>
                 <input type="text" class="form-control" name="author[]" id="name" required value="{{$author->name}}"/>
+                @endforeach
                 <h>Title</h>
                 <input type="text" class="form-control" name="title"  id="title" required value="{{$journal->title}}"/>
                 <h>Genre</h>
@@ -36,18 +38,16 @@
                 <h>Type Number</h>
                 <input type="number" class="form-control" name="type" id="type" value="{{$journal->type}}"/>
                 <h>Volume Number</h>
-                <input type="number" class="form-control" name="volume"  id="volume" value="{{$journalDetails->volume}}"/>
+                <input type="number" class="form-control" name="volume"  id="volume" value="{{$journalDetails->volume}}" />
                 <h>Issue Number</h>
                 <input type="number" class="form-control" name="issue"id="issue" value="{{$journalDetails->issue}}"/>
               </div>
               
               <div class="my-4"> <!-- ini margin y atau margin top dan margin bottom -->
                 <input class="form-control" type="file" name="journal-file" accept=".pdf" maxlength="1">
-                
-                <script class="jsbin" src="https://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
                 <br>
               </div>
-        
+         
                 
               <div class="row">
                 <div class="col">
@@ -61,7 +61,7 @@
           <div class="tab-pane fade" id="about"><!-- isi about taruh didalam ini-->
             <div class="row" id="ab1">
             <label class="form-label">Journal Description</label>
-              <textarea class="form control" name="description" maxlength="500" placeholder="Description..." id="msg">{{$journal->description}}</textarea>
+              <textarea class="form control" name="description" maxlength="500" placeholder="Description..." value="{{$journal->description}}"></textarea>
               <p>0/500</p>
             </div>
           </div>

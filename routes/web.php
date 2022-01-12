@@ -26,6 +26,7 @@ Route::get('/', [CommunityController::class, 'viewLandingPage']);
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
+Route::get('/add-bookmark/{id}',[BookmarksController::class, 'addBookmark'])->name('add-bookmark');
 Route::get('/bookmarks', [
     'as' => 'bookmarks',
     'uses' => [BookmarksController::class, 'index']
@@ -37,6 +38,8 @@ Route::post('/bookmarks/add', [
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
+Route::get('/editjournal/{id}',[JournalController::class,'editJournal']);
+Route::post('/editjournal/{id}',[JournalController::class, 'editJournalP']);
 Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
 
 

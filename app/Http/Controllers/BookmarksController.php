@@ -54,32 +54,11 @@ class BookmarksController extends Controller
         );
     }
 
-    public function addBookmark(Request $request)
+    public function addBookmark($id)
     { 
-        //scope
-        $current_user = Auth::user();
-        
-        //create a new bookmark and associate with current user
-        $bookmark = new Bookmark;
-        $bookmark->user()->associate($current_user->id);
-
-        //configure the bookmark
-        $bookmark->name = $request->name;
-        $bookmark->title = $request->title;
-       
-
-        //save it
-        $bookmark->save();
-
-        //all is well, so pass back a message
-        $message = array(
-            'status' => 'OK', 
-            'message' => 'Bookmark added!'
-        );
-
-        //redirect to the dashboard view with the message
-        return redirect('community.bookmarkList')
-            ->with('message',$message);
+        $bookmarks = DB::table('academic_resources_public_users')->where('users_id', '=', '1')->where('academice_resources_id', '=', $id)
+        ->collect();
+        return back();
 
     }
 
