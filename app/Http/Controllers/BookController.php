@@ -54,7 +54,7 @@ class BookController extends Controller
 
         $fpath = $validated["book-file"]->store("books");
         if ($validated["book-cover"] != null) {
-            $cpath = $validated["book-cover"]->store("cover");
+            $cpath = $validated["book-cover"]->store("Cover");
         }
         else {
             $cpath = null;
