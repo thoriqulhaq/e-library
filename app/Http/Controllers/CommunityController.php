@@ -8,17 +8,39 @@ use Jenssegers\Agent\Agent;
 use Laravel\Jetstream\Jetstream;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
+use App\Models\AcademicResources;
+
+
 
 class CommunityController extends Controller
 {
-    public function viewLandingPage()
+    public function viewLandingPage(Request $request)
     {
         $academicResource = DB::table('academic_resources')->get();
         $academicResource = DB::table('academic_resources')->orderBy('download_count')->get();
 
-        return view('community.landingPage', [
+        $ac = AcademicResources::all();
+
+        $sc = [];
+ 
+        $pattern = $request->title;
+        $pattern = "/" . $pattern . "/i";
+        $apattern = $request->author;
+        $apattern = "/" . $apattern . "/i";
+        foreach ($ac as $acadres) {
+            if (preg_match($pattern, $acadres->title)) {
+                foreach ($acadres->authors as $author) {
+                    if (preg_match($apattern, $author)) {
+                        array_push($sc, $acadres);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return view("community.landingPage", [
             'academicResource' => ($academicResource),
-            'academicResourceSortByDownload' => ($academicResource),
+            'academicResourceSortByDownload' => ($academicResource),"results" =>( $sc),
         ]);
     }
 
@@ -27,6 +49,10 @@ class CommunityController extends Controller
         return Jetstream::inertia()->render($request, 'Profile/Show', [
             'sessions' => $this->sessions($request)->all(),
         ]);
+    }
+    public function searchContent(Request $request)
+    {
+        
     }
 
     public function sessions(Request $request)
@@ -65,12 +91,12 @@ class CommunityController extends Controller
 
     public function viewDetail(Request $request, $id)
     {
-        $userid = 1;
+        $userid = 1; 
         $academicResourceID = $id;
 
         $academicResource = DB::table('academic_resources')->where('id', $academicResourceID)->get();
         $academicResourceAuthor = DB::table('academic_resources_author')->where('academic_resources_id', $academicResourceID)->get();
-        $bookmarkStatus = DB::table('academic_resources_public_users')->where('academic_resources_id', $academicResourceID)->where('users_id', $userid)->get();
+        $bookmarkStatus = DB::table('academic_resources_public_users')->where('academic_resources_id', $academicResourceID)->where('user_id', $userid)->get();
 
         $string = current(current($academicResource))->genre;
         $academicResourceGenre = explode(',', $string);
@@ -82,6 +108,7 @@ class CommunityController extends Controller
             'bookmarkStatus' => count(current($bookmarkStatus)),
         ]);
     }
+
 
     public function viewLoginPage()
     {

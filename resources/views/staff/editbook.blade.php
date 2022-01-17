@@ -1,3 +1,19 @@
+<div class="modal fade" id="testModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="modal-title material-icons" style="font-size: 30px; color: blue;">info</i>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 @extends('staff.main')
 @section('title', 'Edit Book')
 @section('page')
@@ -7,6 +23,55 @@
       
       $(document).ready(function () {
 
+        $("form").submit(function (event) {
+          event.preventDefault();
+          
+          // Check for edition
+          let edition = $("input[name='edition']");
+          if (isNaN(edition.val())) {
+            edition[0].setCustomValidity("This field must be a number");
+            edition[0].reportValidity();
+            edition[0].setCustomValidity("");
+            return;
+          }
+
+          // Check for ISBN
+          let isbn = $("input[name='isbn']");
+          let sum = 0;
+          for (let i = 0; i < isbn.val().length; i++) {
+            sum += (isbn.val()[i] * Math.floor(3 / ((i + 1) % 2 + 1)));
+          }
+          if ((sum % 10 != 0) || isNaN(isbn.val())) {
+            isbn[0].setCustomValidity("ISBN is invalid");
+            isbn[0].reportValidity();
+            isbn[0].setCustomValidity("");
+            return;
+          }
+          
+
+          $.ajax({
+            url: "{{ url('/editbook/' . $id) }}",
+            method: "POST",
+            headers: {"X-CSRF-TOKEN": "{{ csrf_token() }}"},
+            contentType: false,
+            data: new FormData($("form")[0]),
+            processData: false,
+
+            error: function (xhr, status, err) {
+              $(".modal-body").html("Fail to upload book: " + xhr.responseText);
+            },
+
+            success: function (response, status, xhr) {
+              $(".modal-body").html(xhr.responseText);
+            },
+
+            complete: function() {
+              (new bootstrap.Modal(document.getElementById("testModal"), { })).show();
+              $("button[type='submit']").removeAttr("disabled");
+            }
+          });
+        });
+        
         // Attach keyup event on Book Description to update character count
         $("textarea[name='description']").keyup(function (event) {
           let chars = $(this).next();
@@ -62,7 +127,7 @@
         // First input field has "label" tag, if will be deleted, put new label on second field before deletion
         if (currentElement.has("label").length) {
           currentElement.next().removeClass("mt-2")
-          .prepend("<label class='form-label'>Author</label>");
+          .prepend("<label class=\"form-label\">Author<span style=\"color: red;\">*</span></label>");
         }
 
         currentElement.remove();
@@ -90,31 +155,46 @@
         <div class="col-md-6">
           <div class="row">
             <div class="col-md-12 mb-3">
-              <label class="form-label">Book Title</label>
+              <label class="form-label">Book Title<span style="color: red;">*</span></label>
               <input class="form-control" type="text" name="title" placeholder="Title" required value="{{ $book->title }}"/>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">Genre</label>
-              <input class="form-control" type="text" name="genre" value="{{ $book->genre }}">
+
+              <label class="form-label">Category</label>
+              <input class="form-control" type="text" list="categories" name="genre" value="{{ $book->genre }}">
+              <datalist id="categories">
+                <option value="Arts"></option>
+                <option value="Biography"></option>
+                <option value="Business"></option>
+                <option value="Computer & Technology"></option>
+                <option value="Education & Reference"></option>
+                <option value="History"></option>
+                <option value="Literature & Fiction"></option>
+                <option value="Medical"></option>
+                <option value="Religion"></option>
+                <option value="Science & Mathematic"></option>
+                <option value="Social Science"></option>
+                <option value="Sports"></option>
+              </datalist>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">Publisher</label>
+              <label class="form-label">Publisher<span style="color: red;">*</span></label>
               <input class="form-control" type="text" name="publisher" required value="{{ $bookDetails->publisher }}">
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">Place of Publication</label>
+              <label class="form-label">Place of Publication<span style="color: red;">*</span></label>
               <input class="form-control" type="text" name="publish-place" required value="{{ $book->publication_place }}"/>
             </div>
 
             <div class="col-md-6 mb-3">
-              <label class="form-label">Date of Publication</label>
+              <label class="form-label">Date of Publication<span style="color: red;">*</span></label>
               <div class="input-group">
                 <input class="form-control" type="date" name="publish-date" required value="{{ $book->publication_date }}"/>
                 <i class="fas fa-calendar-alt input-group-text"></i>
               </div>
             </div>
             <div class="col-md-6 mb-3">
-              <label class="form-label">ISBN</label>
+              <label class="form-label">ISBN (ISBN-13 only)<span style="color: red;">*</span></label>
               <input class="form-control" type="text" name="isbn" required value="{{ $bookDetails->isbn }}"/>
             </div>
             <div class="col-md-6 mb-3">
@@ -131,17 +211,17 @@
             @foreach ($authors as $author)
             <div class="col-md-12 mb-3">
               @if ($counter == 0)
-              <label class="form-label">Author</label>
+              <label class="form-label">Author<span style="color: red;">*</span></label>
               @endif
               <div class="input-group input-group-sm">
                 @if ($counter == 0 && count($authors) != 5)
-                <input id="author" class="form-control" type="text" name="author[]" value="{{ $author->name }}"/>
+                <input id="author" class="form-control" type="text" name="author[]" value="{{ $author->name }}" required/>
                 <i class="input-group-text material-icons" style="color: #008000; font-size: 18.5px" onclick="addAuthor()">add_box</i>
                 @else
-                <input class="form-control" type="text" name="author[]" value="{{ $author->name }}"/>
+                <input class="form-control" type="text" name="author[]" value="{{ $author->name }}" required/>
                 <i class="input-group-text material-icons" style="color: red; font-size: 18.5px" onclick="deleteAuthor(this)">delete</i>
                 @endif
-              </div>
+              </div> 
             </div>
             @php
               $counter++;
@@ -151,6 +231,7 @@
               <label class="form-label">Book Description</label>
               <textarea class="form-control" name="description">{{ $book->description }}</textarea>
               <p>{{ strlen($book->description) }}/500</p>
+              <p style="color: red;">* required</p>
             </div>
           </div>
         </div>
