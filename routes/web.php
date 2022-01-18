@@ -28,7 +28,9 @@ Route::get('/', [CommunityController::class, 'viewLandingPage'])->name('index');
 Route::get('/book/{id}', [CommunityController::class, 'viewDetail'])->name('detail');
 
 Route::get('/delete-bookmark/{id}', [BookmarksController::class, 'deleteBookmark'])->name('delete-bookmark');
+
 Route::get('/add-bookmark/{id}',[BookmarksController::class, 'addBookmark'])->name('add-bookmark');
+
 Route::get('/login', [CommunityController::class, 'viewloginPage']);
 Route::get('/profile', [CommunityController::class, 'viewprofilePage'])->name('dashboard');
 Route::get('/home', [CommunityController::class, 'authRedirect']);
@@ -43,12 +45,14 @@ Route::get('logouts', function (Request $request) {
 
     return redirect()->route('index');
 })->name('logouts');
+
 Route::get('/uploadjournal',[JournalController::class,'viewUploadJournal']);
 Route::get('/editjournal/{id}',[JournalController::class,'editJournal']);
 Route::post('/editjournal/{id}',[JournalController::class, 'editJournalP']);
 Route::post('/uploadjournal',[JournalController::class, 'submitUploadJournal']);
 Route::get('/delete-journal/{id}', [CommunityController::class, 'deleteJournal'])->name('deleteJournal');
 Route::get('/journal-content', [CommunityController::class, 'viewJournalContent']);
+
 
 
 Route::get('/admin', [StaffController::class, 'viewLandingPage'])->middleware('can:access-as-staff');
