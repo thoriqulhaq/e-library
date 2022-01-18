@@ -1,5 +1,5 @@
 @extends('community.main')
-@section('title', 'Book 1')
+@section('title', 'Book')
 @section('page')
 
 <!-- Masthead-->
@@ -8,23 +8,42 @@
         <div class="row justify-content-center">
             <div class="text-center text-white d-flex justify-content-center" style="padding-top: 180px">
                 {{-- @foreach($books as $key => $data) --}}
-                <div class="row p-5 pt-5" style="width: 960px !important; margin-top: 30px; margin-bottom:30px; background-color: rgb(213,253,160); border-radius: 30px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
+                <div class="row p-5 pt-5" style="width: 960px !important; margin-top: 30px; margin-bottom:30px; background-color: rgb(103,103,103); border-radius: 30px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
                 -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
                 -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
                     <div class="col col-sm-4">
-                        <img src="https://covers.zlibcdn2.com/covers299/books/83/8c/c6/838cc6ac8cb0d8ddb98fdb1ae0c8a443.jpg" class="card-img-top" alt="...">
+                        <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$academicResource->cover_path}}" class="card-img-top" alt="...">
                     </div>
                     <div class="col text-start m-4 " style="color: #212529">
                         <div class="row">
-                            <div class="col">
-                                <h3 class="card-title"></h3>
+                            <div class="col"> @foreach ( $academicResourceAuthor as $data )
+                                <h3 style="color: white !important" class="card-title">{{$academicResource->title}}</h3>
+                                <p style="color: white !important">
+                                <b>by  
+                                   
+                                    <span>{{$data->author_name}}</span>
+                                    @endforeach
+                                </b>
+                                </p>
+                                <p style="color: white !important">
+                                    <b>
+                                        @foreach ( $academicResourceGenre as $data )
+                                        <button type="button" class="btn btn-light" style="border-radius: 25px !important; padding: 4px 12px !important">{{$string = str_replace(' ', '', $data)}}</button>
+                                        @endforeach
+                                    </b>
+                                    </p>
                             </div>
                             <div class="col me-0 text-end">
-                                <ion-icon class="p-0 m-0" style="font-size: 25px;" name="bookmark-outline"></ion-icon>
+                                
+                                <a href="{{url('/add-bookmark/' . $academicResource->id)}}" style="color: white !important">
+                                    <ion-icon class="p-0 m-0" style="font-size: 25px;" name="{{$bookmarkStatus != 1 ? 'bookmark-outline' : 'bookmark'}}"></ion-icon>
+                                </a>
                             </div>
                         </div>
-                        <p class="card-text mt-3"></p>
-                        <a class="btn btn-primary mt-5 ps-4 pe-4" href="{{route('download', ["File_Upload" => "1637349857AA MidTerm Template.pdf"])}}" style="background-color: #008000; border: #008000; border-radius: 50px;">Download</a>
+                        <p class="card-text mt-3" style="color: white !important">{{$academicResource->description}}</p>
+                        <div class="d-flex justify-content-end">
+                            <a class="btn btn-primary mt-3 ps-4 pe-4" href="{{route('download', ["File_Upload" => $academicResource->file_path])}}" style="background-color: white; border: white; color: rgb(103,103,103) !important ;border-radius: 50px;">Download</a>
+                        </div>
                     </div>
                 </div>
                 {{-- @endforeach --}}

@@ -1,213 +1,247 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>Upload New Book</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
+<div class="modal fade" id="testModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <i class="modal-title material-icons" style="font-size: 30px; color: blue;">info</i>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
 
+@extends('staff.main')
+@section('title', 'Edit Book')
+@section('page')
 
-    <style>
-      html, body {
-      min-height: 100%;
-      }
-      body, div, form, input, select, p { 
-      padding: 0;
-      margin: 0;
-      outline: none;
-      font-family: Roboto, Arial, sans-serif;
-      font-size: 14px;
-      color: #666;
-      line-height: 22px;
-      }
-      h1 {
-      margin: 15px 0;
-      font-weight: 400;
-      }
-      h4 {
-      margin-bottom: 4px;
-      }
-      .testbox {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: inherit;
-      padding: 3px;
-      }
-      form {
-      width: 100%;
-      padding: 20px;
-      background: #fff;
-      box-shadow: 0 2px 5px #ccc; 
-      }
-      input, select, textarea {
-      width: 100%;
-      margin-bottom: 10px;
-      border: 1px solid #ccc;
-      border-radius: 3px;
-      }
-      input {
-      width: calc(100% - 10px);
-      padding: 5px;
-      }
-      input:hover, textarea:hover, select:hover {
-      outline: none;
-      border: 1px solid #095484;
-      }
-      select {
-      padding: 7px 0;
-      background: transparent;
-      }
-      textarea {
-      margin-bottom: 3px;
-      }
-      .item {
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      margin: 10px 0;
-      }
-      input[type="date"]::-webkit-inner-spin-button {
-      display: none;
-      }
-      .item i, input[type="date"]::-webkit-calendar-picker-indicator {
-      position: absolute;
-      font-size: 20px;
-      color: #a9a9a9;
-      }
-      .item i {
-      left: 94%;
-      top: 30px;
-     z-index: 1;
-      }
-      [type="date"]::-webkit-calendar-picker-indicator {
-      left: 93%;
-      z-index: 2;
-      opacity: 0;
-      cursor: pointer;
-      }
-      .street, .desired-outcome-item, .complaint-details-item {
-      display: flex;
-      flex-wrap: wrap;
-      }
-      .street input {
-      margin-bottom: 10px;
-      }
-      small {
-      display: block;
-      line-height: 16px;
-      opacity: 0.7;
-      }
-      .btn-block {
-      margin-top: 20px;
-      text-align: center;
-      }
-      button {
-      width: 150px;
-      padding: 10px;
-      border: none;
-      -webkit-border-radius: 5px; 
-      -moz-border-radius: 5px; 
-      border-radius: 5px; 
-      background-color: #095484;
-      font-size: 16px;
-      color: #fff;
-      cursor: pointer;
-      }
-      button:hover {
-      background-color: #0666a3;
-      }
-      @media (min-width: 568px) {
-      input {
-      width: calc(35% - 20px);
-      margin: 0 0 0 8px;
-      }
-      select {
-      width: calc(50% - 8px);
-      margin: 0 0 10px 8px;
-      }
-      .item {
-      flex-direction: row;
-      align-items: center;
-      }
-      .item p {
-      width: 30%;
-      }
-      .item i {
-      left: 61%;
-      top: 25%;
-      }
-      [type="date"]::-webkit-calendar-picker-indicator {
-      left: 60%;
-      }
-      .street, .desired-outcome-item, .complaint-details-item {
-      width: 70%;
-      }
-      .street input {
-      width: calc(50% - 20px);
-      }
-      .street .street-item {
-      width: 100%;
-      }
-      .address p, .desired-outcome p, .complaint-details p {
-      align-self: flex-start;
-      margin-top: 6px;
-      }
-      .desired-outcome-item, .complaint-details-item {
-      margin-left: 12px;
-      }
-      textarea {
-      width: calc(100% - 6px);
-      }
-      }
-    </style>
+ 
+    <script>
+      
+      $(document).ready(function () {
 
+        $("form").submit(function (event) {
+          event.preventDefault();
+          
+          // Check for edition
+          let edition = $("input[name='edition']");
+          if (isNaN(edition.val())) {
+            edition[0].setCustomValidity("This field must be a number");
+            edition[0].reportValidity();
+            edition[0].setCustomValidity("");
+            return;
+          }
 
-  </head>
+          // Check for ISBN
+          let isbn = $("input[name='isbn']");
+          let sum = 0;
+          for (let i = 0; i < isbn.val().length; i++) {
+            sum += (isbn.val()[i] * Math.floor(3 / ((i + 1) % 2 + 1)));
+          }
+          if ((sum % 10 != 0) || isNaN(isbn.val())) {
+            isbn[0].setCustomValidity("ISBN is invalid");
+            isbn[0].reportValidity();
+            isbn[0].setCustomValidity("");
+            return;
+          }
+          
+
+          $.ajax({
+            url: "{{ url('/editbook/' . $id) }}",
+            method: "POST",
+            headers: {"X-CSRF-TOKEN": "{{ csrf_token() }}"},
+            contentType: false,
+            data: new FormData($("form")[0]),
+            processData: false,
+
+            error: function (xhr, status, err) {
+              $(".modal-body").html("Fail to upload book: " + xhr.responseText);
+            },
+
+            success: function (response, status, xhr) {
+              $(".modal-body").html(xhr.responseText);
+            },
+
+            complete: function() {
+              (new bootstrap.Modal(document.getElementById("testModal"), { })).show();
+              $("button[type='submit']").removeAttr("disabled");
+            }
+          });
+        });
+        
+        // Attach keyup event on Book Description to update character count
+        $("textarea[name='description']").keyup(function (event) {
+          let chars = $(this).next();
+          chars.html($(this).val().length + "/500");
+        });
+
+        window.addEventListener("beforeunload", function (event) {
+          event.preventDefault();
+          let confirmMessage = "\o/";
+
+          return confirmMessage;
+        });
+      });
+
+      // Function to add more Author input fields
+      // Limit to 5 input fields
+      // First input field changed to delete after 5 fields
+      // Changed back to add when deletion of one input field
+      var authorValue = [];
+      var authorCount = 1;
+      function addAuthor() {
+        var value = document.getElementById("authors").value
+
+        // Find the last row (book description) and add input field before it
+        let currentElement = $("#authors").children();
+        currentElement.eq(-1).before(
+        `<div class="col-md-12 mt-2 mb-3">
+              <div class="input-group input-group-sm">
+                <input class="form-control" type="text" name="author[]" required value="` + value + `"/>
+                <i class="input-group-text material-icons" style="color: red; font-size: 18.5px" onclick="deleteAuthor(this)">delete</i>
+              </div>
+            </div>`);
+        
+            authorCount++;
+            authorValue.push(value);
+            console.log(authorValue)
+            document.getElementById("authors").value = "";
+
+            // Change the first input field add button to delete, limit 5 authors
+            if (authorCount >= 5) {
+              currentElement.eq(0).find("i")
+              .attr("onclick", "deleteAuthor(this)")
+              .css("color", "red")
+              .html("delete");
+
+            }
+      }
+
+      // Delete the Author input field
+      function deleteAuthor(el) {
+        let currentElement = $(el).parent().parent();
+
+        // First input field has "label" tag, if will be deleted, put new label on second field before deletion
+        if (currentElement.has("label").length) {
+          currentElement.next().removeClass("mt-2")
+          .prepend("<label class=\"form-label\">Author<span style=\"color: red;\">*</span></label>");
+        }
+
+        currentElement.remove();
+
+        // Change back the first Author input field to add if 5 authors limit is reached
+        currentElement = $("#authors").children().eq(0);
+        if (authorCount >= 5) {
+          currentElement.find("i")
+          .attr("onclick", "addAuthor()")
+          .css("color", "#008000")
+          .html("add_box");
+        }
+
+        authorCount--;
+      }
+    </script>
 
 
 
-  <body>
-    <div class="testbox">
-      <form action="{{ url('/editbook/9') }}" method="post" enctype="multipart/form-data">
+
+    <div class="container" style="height: 100vh; padding-top: 180px">
+      <h1 class="mb-5">Edit Book</h1>
+      <form class="row g-3" action="{{ url('/editbook/' . $id) }}" method="post" enctype="multipart/form-data" >
         @csrf
-        <h1>Upload Book Form</h1>
-        <div class="item">
-          <p>Book Title</p>
-          <input type="text" name="title" placeholder="Title" value="{{ $title }}" required/>
+        <div class="col-md-6">
+          <div class="row">
+            <div class="col-md-12 mb-3">
+              <label class="form-label">Book Title<span style="color: red;">*</span></label>
+              <input class="form-control" type="text" name="title" placeholder="Title" required value="{{ $book->title }}"/>
+            </div>
+            <div class="col-md-6 mb-3">
+
+              <label class="form-label">Category</label>
+              <input class="form-control" type="text" list="categories" name="genre" value="{{ $book->genre }}">
+              <datalist id="categories">
+                <option value="Arts"></option>
+                <option value="Biography"></option>
+                <option value="Business"></option>
+                <option value="Computer & Technology"></option>
+                <option value="Education & Reference"></option>
+                <option value="History"></option>
+                <option value="Literature & Fiction"></option>
+                <option value="Medical"></option>
+                <option value="Religion"></option>
+                <option value="Science & Mathematic"></option>
+                <option value="Social Science"></option>
+                <option value="Sports"></option>
+              </datalist>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Publisher<span style="color: red;">*</span></label>
+              <input class="form-control" type="text" name="publisher" required value="{{ $bookDetails->publisher }}">
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Place of Publication<span style="color: red;">*</span></label>
+              <input class="form-control" type="text" name="publish-place" required value="{{ $book->publication_place }}"/>
+            </div>
+
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Date of Publication<span style="color: red;">*</span></label>
+              <div class="input-group">
+                <input class="form-control" type="date" name="publish-date" required value="{{ $book->publication_date }}"/>
+                <i class="fas fa-calendar-alt input-group-text"></i>
+              </div>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">ISBN (ISBN-13 only)<span style="color: red;">*</span></label>
+              <input class="form-control" type="text" name="isbn" required value="{{ $bookDetails->isbn }}"/>
+            </div>
+            <div class="col-md-6 mb-3">
+              <label class="form-label">Edition</label>
+              <input class="form-control" type="text" name="edition" value="{{ $bookDetails->edition }}">
+            </div>
+          </div>
         </div>
-        <div class="item">
-          <p>Author</p>
-          <input type="text" name="author" required/>
+        <div class="col-md-6 mb-3">
+          <div class="row" id="authors">
+            @php
+              $counter = 0;
+            @endphp
+            @foreach ($authors as $author)
+            <div class="col-md-12 mb-3">
+              @if ($counter == 0)
+              <label class="form-label">Author<span style="color: red;">*</span></label>
+              @endif
+              <div class="input-group input-group-sm">
+                @if ($counter == 0 && count($authors) != 5)
+                <input id="author" class="form-control" type="text" name="author[]" value="{{ $author->name }}" required/>
+                <i class="input-group-text material-icons" style="color: #008000; font-size: 18.5px" onclick="addAuthor()">add_box</i>
+                @else
+                <input class="form-control" type="text" name="author[]" value="{{ $author->name }}" required/>
+                <i class="input-group-text material-icons" style="color: red; font-size: 18.5px" onclick="deleteAuthor(this)">delete</i>
+                @endif
+              </div> 
+            </div>
+            @php
+              $counter++;
+            @endphp
+            @endforeach
+            <div class="col-md-12 mb-3">
+              <label class="form-label">Book Description</label>
+              <textarea class="form-control" name="description">{{ $book->description }}</textarea>
+              <p>{{ strlen($book->description) }}/500</p>
+              <p style="color: red;">* required</p>
+            </div>
+          </div>
         </div>
-        <div class="item">
-          <p>Genre</p>
-          <input type="text" name="genre" value="{{ $genre }}">
-        </div>
-        <div class="item">
-          <p>Publisher</p>
-          <input type="text" name="publisher" value="{{ $publisher }}" required>
-        </div>
-        <div class="item">
-          <p>Place of Publication</p>
-          <input type="text" name="publish-place" value="{{ $publish_place }}" required/>
-        </div>
-        <div class="item">
-          <p>Date of Publication</p>
-          <input type="date" name="publish-date" value="{{ $publish_date }}" required/>
-          <i class="fas fa-calendar-alt"></i>
-        </div>
-        <div class="item">
-          <p>ISBN</p>
-          <input type="text" name="isbn" value="{{ $isbn }}" required/>
-        </div>
-        <div class="item">
-          <p>Book  Description</p>
-          <input type="text" name="description" value="{{ $description }}">
-        </div>
-        <div class="btn-block">
-          <button type="submit" href="/">Send</button>
+        <div class="d-flex justify-content-end">
+          <div class="btn-block">
+            {{-- <button type="submit" class="btn btn-primary ps-4 pe-4" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Add</button> --}}
+            <button type="submit" class="btn btn-primary ps-4 pe-4" href="/" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Save</button>
+          </div>
         </div>
       </form>
     </div>
-  </body>
-</html>
+
+@endsection
