@@ -4,7 +4,7 @@
       <div class="modal-header">
         <i class="modal-title material-icons" style="font-size: 30px; color: blue;">info</i>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
+      </div>  
       <div class="modal-body">
       </div>
       <div class="modal-footer">
