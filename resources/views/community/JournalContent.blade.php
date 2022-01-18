@@ -1,8 +1,7 @@
-@extends('staff.main')
-@section('title', 'Admin - IAIN Ponorogo E-Library')
-@section('page')
-
-<div class="m-5">
+@extends('community.main') 
+    @section('title', 'IAIN Ponorogo E-Library')
+    @section('page')<br><br><br><br><br><br>
+    <div class="m-5">
     <div class="d-flex justify-content-between align-items-center mb-4">
         <form method="GET">   
             <label class="form-label">Search</label>
@@ -11,9 +10,9 @@
             <input type="text" name="author" placeholder="Author"> 
             <input type="submit" value="Search">
         </form>
-        <a href="{{url('/uploadbook')}}" type="button" class="btn d-flex bg-success text-white" data-toggle="tooltip" data-original-title="Delete">
-            <p class="my-auto me-3">Add Academic Resource</p>
-            <ion-icon style="font-size: 24px" name="book"></ion-icon>
+        <a href="{{url('/uploadjournal')}}" type="button" class="btn d-flex bg-success text-white" data-toggle="tooltip" data-original-title="Delete">
+            <p class="my-auto me-3">Add Journal Resource</p>
+            <ion-icon style="font-size: 24px" name="journal"></ion-icon>
         </a>
     </div>
 
@@ -23,7 +22,7 @@
             <th scope="col">No</th>
             <th scope="col">Cover</th>
             <th scope="col">Title</th>
-            <th scope="col">Genre</th>
+            <th scope="col">Categories</th>
             <th scope="col"></th>
             <th scope="col"></th>
           </tr>
@@ -32,7 +31,7 @@
         @php
             $counter = 0;
         @endphp
-        @foreach ($datas as $academicResource)
+        @foreach ($datass as $academicResource)
         @php
             $counter++;
         @endphp
@@ -46,12 +45,12 @@
                 @endforeach                
             </td>
            <td>
-                <a href="{{url('/editbook/' . $academicResource->id)}}" type="button" class="btn p-0" data-toggle="tooltip" data-original-title="Delete">
+                <a href="{{url('/editjournal/' . $academicResource->id)}}" type="button" class="btn p-0" data-toggle="tooltip" data-original-title="Delete">
                     <ion-icon style="font-size: 16px" name="create-outline"></ion-icon>
                 </a>
             </td> 
             <td>
-                <a href="{{url('/delete-content/' . $academicResource->id)}}" type="button" class="btn p-0" data-toggle="tooltip" data-original-title="Delete">
+                <a href="{{url('/delete-journal/' . $academicResource->id)}}" type="button" class="btn p-0" data-toggle="tooltip" data-original-title="Delete">
                     <ion-icon style="font-size: 16px" name="trash"></ion-icon>
                 </a>
             </td>
