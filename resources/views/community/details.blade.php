@@ -42,7 +42,7 @@
                         </div>
                         <p class="card-text mt-3" style="color: white !important">{{$academicResource->description}}</p>
                         <div class="d-flex justify-content-end">
-                            <a class="btn btn-primary mt-3 ps-4 pe-4" href="{{route('download', ["File_Upload" => $academicResource->file_path])}}" style="background-color: white; border: white; color: rgb(103,103,103) !impotant ;border-radius: 50px;">Download</a>
+                            <a class="btn btn-primary mt-3 ps-4 pe-4" href="{{route('download', ["File_Upload" => $academicResource->file_path])}}" style="background-color: white; border: white; color: rgb(103,103,103) !important ;border-radius: 50px;">Download</a>
                         </div>
                     </div>
                 </div>
