@@ -45,7 +45,7 @@
                                 <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a></li>
                             @endif
                             @if(Auth::user()->is_admin==false)
-                                <li><a class="dropwdown-item" href="{{url('/journal-content')}}">Journals</a></li>
+                                <li><a class="dropdown-item" href="{{url('/journal-content')}}">Journals</a></li>
                             @endif
                             <li><a class="dropdown-item" href="{{ url('/bookmarks') }}">Bookmarks</a></li>
                             <li><hr class="dropdown-divider"></li>
