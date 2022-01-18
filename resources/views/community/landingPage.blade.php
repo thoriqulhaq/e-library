@@ -4,25 +4,34 @@
 
 <!-- Masthead-->
 <header class="masthead" style="height: 100vh">
-    <div class="container position-relative mt-5" style="padding: 120px 0">
+    <div class="container position-relative" style="padding: 50px 0">
         <div class="row justify-content-center">
-            <div class="col-xl-6">
+            <div class="">
                 <div class="text-center text-white">
-                    <!-- Page heading-->
-                    <h1 class="mb-5" style="color: #212529">Discover, Enlighten, Inspire</h1>
-                   
-                    <form action="{{ url('/') }}" method="GET" >
-                        <div class="row" style="--bs-gutter-x: 0 !important;">
-                            <div class="col">
-                                <input class="form-control form-control-lg" style="border-radius: 50px 0 0 50px; padding-left: 35px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
-                                -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
-                                -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);"  type="text" name="title" placeholder="Search Academic Papers, Books, Journals etc" />
-                            </div>
-                            <div class="col-auto"><button class="btn btn-primary btn-lg disabled ps-4" type="submit" style="background-color: #008000; border:#008000; border-radius: 0 50px 50px 0; height: 64px; padding-right: 35px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
-                                -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
-                                -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">Search</button></div>
+                    <div class="row">
+                        <div class="col">
+                            <img src="{{URL::asset('assets/img/pic1.svg')}}" alt="iain-ponorogo-library-" height="500" width="500">
                         </div>
-                    </form>
+                        <div class="col pe-5 ps-4" style="padding: 120px 0">
+                            <h1 class="mb-5" style="color: white">Discover, Enlighten, Inspire</h1>
+                   
+                            <form action="{{ url('/') }}" method="GET" >
+                                <div class="row" style="--bs-gutter-x: 0 !important;">
+                                    <div class="col">
+                                        <input class="form-control form-control-lg" style="border-radius: 50px 0 0 50px; padding-left: 30px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
+                                        -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
+                                        -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8); font-size: 15px;"  type="text" name="title" placeholder="Search Academic Papers, Books, Journals etc" />
+                                    </div>
+                                    <div class="col-auto"><button class="btn btn-primary btn-lg disabled ps-4" type="submit" style="background-color: #108B4E; border:#108B4E; border-radius: 0 50px 50px 0; height: 56.5px; padding-right: 35px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
+                                        -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
+                                        -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8); font-size: 15px;">Search</button></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    
+                    <!-- Page heading-->
+                    
 
                     
                 </div>
