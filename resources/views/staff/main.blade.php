@@ -46,10 +46,13 @@
                 
                 <li> <a href="{{url("/admin")}}" style="font-size: 15px;" class="nav-link {{$page == 1 ? 'active bg-success text-white' : 'text-success'}}"> <i class="fa fa-dashboard"></i><span class="ms-2">Dashboard</span> </a> </li>
                 
+
+
                  <li> <a href="{{url("/content-manager")}}" style="font-size: 15px;" class="nav-link {{$page  == 2 ? 'active bg-success text-white' : 'text-success'}}"> <i class="fa fa-book"></i><span class="ms-2">Content Manager</span> </a> </li>
                  <li> <a href="{{url("/account-manager")}}" style="font-size: 15px;" class="nav-link {{$page  == 3 ? 'active bg-success text-white' : 'text-success'}}"> <i class="fa fa-user"></i><span class="ms-2">Account Manager</span> </a> 
                 <li> <a href="{{url("/add-account")}}" style="font-size: 15px;" class="nav-link {{$page  == 4 ? 'active bg-success text-white' : 'text-success'}}"> <ion-icon name="person-add"></ion-icon><span class="ms-2">Add Admin Account</span> </a> </li>
                 </li>
+
                     
                 {{-- <li> <a href="#" class="nav-link text-success"> <i class="fa fa-first-order"></i><span class="ms-2">My Orders</span> </a> </li>
                 <li> <a href="#" class="nav-link text-success"> <i class="fa fa-cog"></i><span class="ms-2">Settings</span> </a> </li>

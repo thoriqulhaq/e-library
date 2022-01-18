@@ -18,7 +18,7 @@
 @section('title', 'Edit Book')
 @section('page')
 
-
+ 
     <script>
       
       $(document).ready(function () {

@@ -14,7 +14,7 @@ use App\Models\AcademicResources;
 
 class CommunityController extends Controller
 {
-    public function viewLandingPage(Request $request)
+    public function viewLandingPage(Request $request) 
     {
         $academicResource = DB::table('academic_resources')->get();
         $academicResource = DB::table('academic_resources')->orderBy('download_count')->get();
@@ -43,6 +43,31 @@ class CommunityController extends Controller
             'academicResourceSortByDownload' => ($academicResource),"results" =>( $sc),
         ]);
     }
+    public function viewJournalContent(Request $request)
+    {
+        $ac = AcademicResources::all();
+
+        $sc = [];
+
+        $pattern = $request->title;
+        $pattern = "/" . $pattern . "/i";
+        $apattern = $request->author;
+        $apattern = "/" . $apattern . "/i";
+        foreach ($ac as $acadres) {
+            if (preg_match($pattern, $acadres->title)) {
+                foreach ($acadres->authors as $author) {
+                    if (preg_match($apattern, $author)) {
+                        array_push($sc, $acadres);
+                        break;
+                    }
+                }
+            }
+        }
+
+        return view('community.JournalContent', [
+            'datass' => $sc
+        ]);
+    }
 
     public function viewprofilePage(Request $request)
     {
@@ -50,10 +75,7 @@ class CommunityController extends Controller
             'sessions' => $this->sessions($request)->all(),
         ]);
     }
-    public function searchContent(Request $request)
-    {
-        
-    }
+    
 
     public function sessions(Request $request)
     {
@@ -122,5 +144,10 @@ class CommunityController extends Controller
         } else {
             return redirect('/');
         }
+    }
+    public function deleteJournal($id)
+    {
+        $data = DB::table('academic_resources')->where('id', '=', $id)->delete();
+        return back();
     }
 }
