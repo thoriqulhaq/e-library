@@ -17,7 +17,7 @@ class BookmarksController extends Controller
         $bookmarkDetails = array();
         // $academicResourceID = $id;
 
-        $bookmarks = DB::table('academic_resources_public_users')->where('user_id', '=', '1')->get();
+        $bookmarks = DB::table('academic_resources_public_users')->where('user_id', '=', Auth::user()->id)->get();
 
 
         foreach (($bookmarks) as $bookmarksID) {
