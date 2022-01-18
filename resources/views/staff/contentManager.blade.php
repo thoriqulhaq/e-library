@@ -38,7 +38,7 @@
         @endphp
           <tr>
             <th scope="row">{{$counter}}</th>
-            <td> <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/Cover/{{$academicResource->cover_path}}" class="card-img-top "  style="width:160px; height:200px;"></td>
+            <td> <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$academicResource->cover_path}}" class="card-img-top "  style="width:160px; height:200px;"></td>
             <td><a class="text-decoration-none "href="{{url('/book/' . $academicResource->id)}}">{{$academicResource->title}}</a></td>
             <td>
                 @foreach (explode(',', $academicResource->genre) as $genre) 
