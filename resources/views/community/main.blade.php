@@ -13,6 +13,9 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" type="text/css" />
     <!-- Google fonts-->
     <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="{{URL::asset('css/styles.css')}}" rel="stylesheet" />
 </head>
@@ -22,9 +25,9 @@
     <nav class="navbar navbar-light bg-white static-top m-4 fixed-top" style="border-radius: 50px; box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
     -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
     -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
-        <div class="container-fluid ps-4 pe-4">
+        <div class="container-fluid ps-3 pe-3">
             <a class="navbar-brand p-0" href="/">
-                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="90" width="210" style="object-fit: cover;">
+                <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="60" width="180" style="object-fit: cover;">
             </a>
             <div>
                 @if (Auth::check())
@@ -39,6 +42,7 @@
                             @if(Auth::user()->is_admin == true)
                                 <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a></li>
                             @endif
+                            <li><a class="dropdown-item" href="{{ url('/bookmarks') }}">Bookmarks</a></li>
                             <li><hr class="dropdown-divider"></li>
                             <form action="{{ route('logout') }}" method="POST">
                                 @csrf
@@ -47,8 +51,8 @@
                         </ul>
                     </div>
                 @else
-                <a class="btn btn-primary ps-4 pe-4 me-2" href="{{url("/login")}}" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Login</a>
-                <a class="btn btn-primary ps-4 pe-4" href="{{url("/register")}}" style="background-color: #008000; border-radius: 50px; border: #008000 1px solid">Sign Up</a>
+                <a class="btn btn-primary ps-4 pe-4 me-2" href="{{url("/login")}}" style="background-color: #108B4E; border-radius: 50px; border: #108B4E 1px solid; font-size: 15px; width: 110px">Login</a>
+                <a class="btn btn-primary ps-4 pe-4" href="{{url("/register")}}" style="background-color: #108B4E; border-radius: 50px; border: #108B4E 1px solid; font-size: 15px; width: 110px">Sign Up</a>
                 @endif
             </div>
         </div>

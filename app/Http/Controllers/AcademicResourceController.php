@@ -30,4 +30,5 @@ class AcademicResourceController extends Controller
 
         return view("search", ["results" => $sc]);
     }
+
 }

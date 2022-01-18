@@ -12,15 +12,15 @@
                 -webkit-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);
                 -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
                     <div class="col col-sm-4">
-                        <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/Cover/{{$academicResource->cover_path}}" class="card-img-top" alt="...">
+                        <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$academicResource->cover_path}}" class="card-img-top" alt="...">
                     </div>
                     <div class="col text-start m-4 " style="color: #212529">
                         <div class="row">
-                            <div class="col">
+                            <div class="col"> @foreach ( $academicResourceAuthor as $data )
                                 <h3 class="card-title">{{$academicResource->title}}</h3>
                                 <p>
-                                <b>by 
-                                    @foreach ( $academicResourceAuthor as $data )
+                                <b>by  
+                                   
                                     <span>{{$data->author_name}}</span>
                                     @endforeach
                                 </b>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="col me-0 text-end">
                                 
-                                <a href="{{url('/delete-bookmark/' . $academicResource->id)}}" style="color: inherit">
+                                <a href="{{url('/add-bookmark/' . $academicResource->id)}}" style="color: inherit">
                                     <ion-icon class="p-0 m-0" style="font-size: 25px;" name="{{$bookmarkStatus != 1 ? 'bookmark-outline' : 'bookmark'}}"></ion-icon>
                                 </a>
                             </div>

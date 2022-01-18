@@ -3,12 +3,19 @@
 @section('page')
 
 <div class="m-5">
-    <div class="d-flex justify-content-end mb-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <form method="GET">        
+          <input type="text" name="name" placeholder="Name">
+          <ion-icon name="search"></ion-icon>  
+          <br>
+          <label for="mail">Search by email</label>
+          <input id="mail" type="checkbox" name="is_email">
+        </form>
         <a href="{{route('addAccount')}}" type="button" class="btn d-flex bg-success text-white" data-toggle="tooltip" data-original-title="Delete">
             <p class="my-auto me-3">Add Admin Account</p>
             <ion-icon style="font-size: 24px" name="person-add"></ion-icon>
         </a>
-    </div>
+    </div> 
 
     <table class="table">
         <thead>

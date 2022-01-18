@@ -33,17 +33,37 @@ class BookmarksController extends Controller
         ));
     }
 
-    public function setBookmark($id)
+    public function _construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function index()
     {
         $bookmarks = DB::table('academic_resources_public_users')->where('user_id', '=', '1')->where('academic_resources_id', '=', $id)->add();
+        //grab this user's bookmarks and any public bookmarks
+        $bookmarks->where('users_id', '=', Auth::user()->id)
+            ->orWhere('id', $bookmarks->academic_resources_id)
+            ->get();
 
-        return back();
+
+        $message = \Session::get('message') ? \Session::get('message') : array();
+
+        //render with all of the necassary data
+        return view('community.bookmarkList')->with(
+            array(
+                'bookmarks' => $bookmarks
+            ),
+
+        );
     }
+
+
 
     public function deleteBookmark($id)
     {
 
-        $bookmarks = DB::table('academic_resources_public_users')->where('user_id', '=', '1')->where('academic_resources_id', '=', $id)->delete();
+        $bookmarks = DB::table('academic_resources_public_users')->where('user_id', '=', Auth::user()->id)->where('academic_resources_id', '=', $id)->delete();
 
         return back();
     }
