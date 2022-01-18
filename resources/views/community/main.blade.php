@@ -27,8 +27,10 @@
     -moz-box-shadow: 0px 0px 23px -12px rgba(74,74,74,0.8);">
         <div class="container-fluid ps-3 pe-3">
             <a class="navbar-brand p-0" href="/">
+
                 <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="60" width="180" style="object-fit: cover;">
             </a>
+
             <div>
                 @if (Auth::check())
                    <div class="dropdown">
@@ -41,6 +43,9 @@
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profile</a></li>
                             @if(Auth::user()->is_admin == true)
                                 <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a></li>
+                            @endif
+                            @if(Auth::user()->is_admin==false)
+                                <li><a class="dropdown-item" href="{{url('/journal-content')}}">Journals</a></li>
                             @endif
                             <li><a class="dropdown-item" href="{{ url('/bookmarks') }}">Bookmarks</a></li>
                             <li><hr class="dropdown-divider"></li>
