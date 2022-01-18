@@ -94,7 +94,7 @@
                             <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$data->cover_path}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <a href="{{url('/book/' . $data->id)}}" class="text-decoration-none text-reset">
-                                    <h5 class="card-title" style="color: white !important">{{$data->title}}</h5>
+                                    <h5 class="card-title" style="color: rgb(103,103,103) !important">{{$data->title}}</h5>
                                 </a>
                             </div>
                         </div>
@@ -115,7 +115,7 @@
                             <img src="https://elibbucket.s3.ap-southeast-1.amazonaws.com/{{$data->cover_path}}" class="card-img-top" alt="...">
                             <div class="card-body">
                                 <a href="{{url('/book/' . $data->id)}}" class="text-decoration-none text-reset">
-                                    <h5 class="card-title" style="color: white !important">{{$data->title}}</h5>
+                                    <h5 class="card-title" style="color: rgb(103,103,103) !important">{{$data->title}}</h5>
                                 </a>
                             </div>
                         </div>
