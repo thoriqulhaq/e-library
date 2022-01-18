@@ -47,7 +47,7 @@
                     <ul>
                         <li> <a href="{{url("/add-account")}}" class="nav-link {{$page  == 4 ? 'active bg-white text-success' : 'text-white'}}"> <ion-icon name="person-add"></ion-icon><span class="ms-2">Add Admin Account</span> </a> </li>
                     </ul>
-                </li>
+                </li> 
                     
                 {{-- <li> <a href="#" class="nav-link text-white"> <i class="fa fa-first-order"></i><span class="ms-2">My Orders</span> </a> </li>
                 <li> <a href="#" class="nav-link text-white"> <i class="fa fa-cog"></i><span class="ms-2">Settings</span> </a> </li>

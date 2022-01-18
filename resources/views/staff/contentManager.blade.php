@@ -8,7 +8,7 @@
             <label class="form-label">Search</label>
             <br>
             <input type="text" name="title" placeholder="Title">
-            <input type="text" name="author" placeholder="Author">
+            <input type="text" name="author" placeholder="Author"> 
             <input type="submit" value="Search">
         </form>
         <a href="{{url('/uploadbook')}}" type="button" class="btn d-flex bg-success text-white" data-toggle="tooltip" data-original-title="Delete">

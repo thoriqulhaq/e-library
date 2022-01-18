@@ -25,7 +25,7 @@
         <div class="container-fluid ps-4 pe-4">
             <a class="navbar-brand p-0" href="/">
                 <img src="{{URL::asset('assets/img/logo.png')}}" alt="iain-ponorogo-library-" height="90" width="210" style="object-fit: cover;">
-            </a>
+            </a> 
             <div>
                 @if (Auth::check())
                    <div class="dropdown">
@@ -38,6 +38,9 @@
                             <li><a class="dropdown-item" href="{{ route('dashboard') }}">Profile</a></li>
                             @if(Auth::user()->is_admin == true)
                                 <li><a class="dropdown-item" href="{{ url('/admin') }}">Admin Dashboard</a></li>
+                            @endif
+                            @if(Auth::user()->is_admin==false)
+                                <li><a class="dropwdown-item" href="{{url('/journal-content')}}">Journals</a></li>
                             @endif
                             <li><a class="dropdown-item" href="{{ url('/bookmarks') }}">Bookmarks</a></li>
                             <li><hr class="dropdown-divider"></li>
