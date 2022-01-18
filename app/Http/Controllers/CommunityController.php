@@ -22,7 +22,13 @@ class CommunityController extends Controller
         $ac = AcademicResources::all();
 
         $sc = [];
- 
+
+        $viewStatus = "LandingPage";
+
+        if (isset($request->title)) {
+            $viewStatus = "Search";
+        }
+
         $pattern = $request->title;
         $pattern = "/" . $pattern . "/i";
         $apattern = $request->author;
@@ -40,7 +46,9 @@ class CommunityController extends Controller
 
         return view("community.landingPage", [
             'academicResource' => ($academicResource),
-            'academicResourceSortByDownload' => ($academicResource),"results" =>( $sc),
+            'academicResourceSortByDownload' => ($academicResource),
+            "results" => ($sc),
+            'pageStatus' => $viewStatus
         ]);
     }
     public function viewJournalContent(Request $request)
@@ -75,7 +83,6 @@ class CommunityController extends Controller
             'sessions' => $this->sessions($request)->all(),
         ]);
     }
-    
 
     public function sessions(Request $request)
     {
@@ -113,7 +120,7 @@ class CommunityController extends Controller
 
     public function viewDetail(Request $request, $id)
     {
-        $userid = 1; 
+        $userid = 1;
         $academicResourceID = $id;
 
         $academicResource = DB::table('academic_resources')->where('id', $academicResourceID)->get();
