@@ -60,31 +60,31 @@
 
     @yield('page')
 
-    <footer class="footer" style="background-color: rgb(213,253,160)">
+    <footer class="footer" style="background-color: rgb(103,103,103)">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+                <div class="col-lg-6 h-100 text-center text-lg-start my-auto" style="color: white !important">
                     <ul class="list-inline mb-2">
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">About</a></li>
+                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset text-white">About</a></li>
                         <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">Contact</a></li>
+                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset text-white">Contact</a></li>
                         <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">Terms of Use</a></li>
+                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset text-white">Terms of Use</a></li>
                         <li class="list-inline-item">⋅</li>
-                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset">Privacy Policy</a></li>
+                        <li class="list-inline-item"><a href="#!" class="text-decoration-none text-reset text-white">Privacy Policy</a></li>
                     </ul>
-                    <p class="text-muted small mb-4 mb-lg-0">&copy; IAIN Ponorogo E-Library 2021. All Rights Reserved.</p>
+                    <p class="text-muted small mb-4 mb-lg-0 text-white" style="color: white !important">&copy; IAIN Ponorogo E-Library 2021. All Rights Reserved.</p>
                 </div>
                 <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                     <ul class="list-inline mb-0">
                         <li class="list-inline-item me-4">
-                            <a href="#!"><i class="bi-facebook fs-3" style="color: #008000;"></i></a>
+                            <a href="#!"><i class="bi-facebook fs-3" style="color: white;"></i></a>
                         </li>
                         <li class="list-inline-item me-4">
-                            <a href="#!"><i class="bi-twitter fs-3" style="color: #008000;"></i></a>
+                            <a href="#!"><i class="bi-twitter fs-3" style="color: white;"></i></a>
                         </li>
                         <li class="list-inline-item">
-                            <a href="#!"><i class="bi-instagram fs-3" style="color: #008000;"></i></a>
+                            <a href="#!"><i class="bi-instagram fs-3" style="color: white;"></i></a>
                         </li>
                     </ul>
                 </div>
